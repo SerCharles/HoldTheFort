@@ -1,0 +1,107 @@
+{
+  "version": "1.1.1",
+  "windows": {
+    "main": {
+      "main": true,
+      "url": "app://editor/index.html",
+      "windowType": "dockable",
+      "x": 496,
+      "y": 27,
+      "width": 1281,
+      "height": 721,
+      "layout": {
+        "children": [
+          {
+            "children": [
+              {
+                "active": 0,
+                "children": [
+                  "hierarchy"
+                ],
+                "height": 300.1000061035156,
+                "type": "panel",
+                "width": 204.0625
+              },
+              {
+                "active": 0,
+                "children": [
+                  "assets"
+                ],
+                "height": 301.1000061035156,
+                "type": "panel",
+                "width": 204.0625
+              }
+            ],
+            "height": 603.2000122070312,
+            "type": "dock-v",
+            "width": 204.0625
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "active": 0,
+                    "children": [
+                      "scene"
+                    ],
+                    "height": 301.6000061035156,
+                    "type": "panel",
+                    "width": 488.1499938964844
+                  },
+                  {
+                    "active": 0,
+                    "children": [
+                      "node-library"
+                    ],
+                    "height": 301.6000061035156,
+                    "type": "panel",
+                    "width": 264.07501220703125
+                  }
+                ],
+                "height": 301.6000061035156,
+                "type": "dock-h",
+                "width": 754.2374877929688
+              },
+              {
+                "active": 0,
+                "children": [
+                  "console",
+                  "timeline"
+                ],
+                "height": 299.6000061035156,
+                "type": "panel",
+                "width": 754.2374877929688
+              }
+            ],
+            "height": 603.2000122070312,
+            "type": "dock-v",
+            "width": 754.2374877929688
+          },
+          {
+            "active": 0,
+            "children": [
+              "inspector",
+              "cocos-services"
+            ],
+            "height": 603.2000122070312,
+            "type": "panel",
+            "width": 304.0874938964844
+          }
+        ],
+        "type": "dock-h"
+      },
+      "panels": [
+        "hierarchy",
+        "assets",
+        "node-library",
+        "console",
+        "timeline",
+        "inspector",
+        "cocos-services",
+        "scene"
+      ]
+    }
+  },
+  "panels": {}
+}

@@ -1,0 +1,142 @@
+/*
+文件名：constants.ts
+描述：常量和常用函数的定义位置
+unitConstants存储着各种士兵，弹药的信息
+gameConstants存储着游戏界面等的信息
+当前版本：1.0.0
+时间：7/12/2019
+*/
+const {ccclass, property} = cc._decorator;
+
+const unitConstants = {
+    //等级和经验
+    maxLevel: 3,
+    expRequiredEachLevel:[100,300],
+
+    //按等级定义的最大生命，攻击，防御，速度
+    healthRangedEachLevel:[200,240,300],
+    healthMeleeEachLevel:[300,380,450],
+    healthRestorationEachLevel:[2,3,5],
+
+    attackRangedEachLevel:[150,170,200],
+    attackMeleeEachLevel:[150,170,200],
+
+    defenseRangedEachLevel:[10,20,35],
+    defenseMeleeEachLevel:[20,35,50],
+
+    speedUnit: 10,
+    speedAmmo: 200,
+    speedCannon: 50,
+
+    //在城堡上运动速度只是原先的10%
+    speedRatioCastle: 10,
+
+    //近战兵在攻城时攻击力,防御力只是原来的50%
+    attackRatioCastleMelee: 50,
+    defenseRatioCastleMelee: 50,
+
+
+    //远程兵射击城上攻击力只是原来的50%
+    attackRatioGroundRanged: 50,
+
+
+    //单位的造价，击杀获得的分数，经验，金币等
+    costRanged:100,
+    costMelee:100,
+
+    killGainScoreRanged:10,
+    killGainScoreMelee:10,
+
+    attackGainExpRanged:20,
+    attackGainExpMelee:20,
+
+    killGainMoneyMelee: 10,
+    killGainMoneyRanged: 10,
+
+    //攻击范围，代表两个单位中心的距离
+    attackRangeMelee: 50,
+    attackRangeRanged: 200,
+
+    //子弹命中判定：两个中心距离小于某个值
+    ammoHitRange:25,
+
+    //近战和远程的攻击时间
+    attackTimeMelee: 2,
+    attackTimeRanged: 5,
+}
+
+const gameConstants = {
+    screenWidth : 960,
+    screenHeight: 640,
+    gridWidth: 60,
+    gridHeight: 60,
+    gridNumX: 16,
+    gridNumY: 10
+}
+
+//判断一个点在哪个格子
+function getCurrentGridPoint(currentPlace) {
+    let x:number = Math.floor(currentPlace.x / gameConstants.gridWidth);
+    let y:number = Math.floor(currentPlace.y / gameConstants.gridHeight);
+    let place:cc.Vec2;
+    place = cc.v2(x,y);
+    return place;
+}
+
+//判断一个正方形物体对应哪些格子
+function getCurrentGridObject(centralPlace, scale) {
+    let placeList:cc.Vec2[] = [];
+    let halfScale:cc.Vec2;
+    halfScale = cc.v2(scale.x / 2, scale.y / 2);
+    let point1:cc.Vec2;
+    point1 = cc.v2(centralPlace.x - halfScale.x, centralPlace.y - halfScale.y);
+
+    let point2:cc.Vec2;
+    point2 = cc.v2(centralPlace.x + halfScale.x, centralPlace.y - halfScale.y);
+
+    let point3:cc.Vec2;
+    point3 = cc.v2(centralPlace.x - halfScale.x, centralPlace.y + halfScale.y);
+
+    let point4:cc.Vec2;
+    point4 = cc.v2(centralPlace.x + halfScale.x, centralPlace.y + halfScale.y);
+    
+    let place1:cc.Vec2 = getCurrentGridPoint(point1);
+    let place2:cc.Vec2 = getCurrentGridPoint(point2);
+    let place3:cc.Vec2 = getCurrentGridPoint(point3);
+    let place4:cc.Vec2 = getCurrentGridPoint(point4);
+
+    placeList.push(place1);
+    if(place2 !== place1)   placeList.push(place2);
+    if(place3 !== place1 && place3 !== place2)  placeList.push(place3);
+    if(place4 !== place1 && place4 !== place2 && place4 !== place3)  placeList.push(place4);
+    return placeList;
+}
+
+//读取距离
+function getDistance(place1,place2) {
+    let dx = place1.x - place2.x;
+    let dy = place1.y - place2.y;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
+//计算伤害
+function calculateDamage(attack, defense){
+
+    return (attack * ((100 - defense) / 100));
+}
+
+//读取一个节点在世界坐标系的位置
+function getWorldPosition(node) {
+    return node.convertToWorldSpace(node.position);
+}
+
+function judgeOutOfRange(place) {
+    if(place.x <= 0 - (gameConstants.screenWidth / 2) || place.y <= (gameConstants.screenHeight / 2) 
+        || place.x >= (gameConstants.screenWidth / 2) || place.y >= (gameConstants.screenHeight / 2)) {
+        return true;
+    }
+    else return false;
+}
+
+export {unitConstants, gameConstants, getCurrentGridPoint, getCurrentGridObject, getDistance, calculateDamage,
+     getWorldPosition, judgeOutOfRange};

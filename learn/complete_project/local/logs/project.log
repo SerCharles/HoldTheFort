@@ -1,0 +1,134 @@
+2019-07-15T01:46:12.269Z - normal: Load ~/.CocosCreator/settings.json
+2019-07-15T01:46:13.635Z - normal: Initializing Asset Database
+2019-07-15T01:46:13.677Z - normal: checking language setting...
+2019-07-15T01:46:13.677Z - normal: Language: zh
+2019-07-15T01:46:17.001Z - success: preview server running at http://localhost:7456
+2019-07-15T01:46:17.004Z - success: protocol editor-framework registered
+2019-07-15T01:46:17.004Z - success: protocol app registered
+2019-07-15T01:46:17.004Z - success: protocol theme registered
+2019-07-15T01:46:17.004Z - success: protocol packages registered
+2019-07-15T01:46:17.004Z - success: protocol uuid registerred
+2019-07-15T01:46:17.004Z - success: protocol db registerred
+2019-07-15T01:46:17.004Z - success: protocol thumbnail registerred
+2019-07-15T01:46:17.004Z - success: protocol unpack registerred
+2019-07-15T01:46:17.005Z - success: protocol disable-commonjs registerred
+2019-07-15T01:46:17.125Z - normal: connected!
+2019-07-15T01:46:17.126Z - normal: Check project G:\Programming\HoldTheFort\learn\complete_project
+2019-07-15T01:46:17.128Z - normal: Initializing project G:\Programming\HoldTheFort\learn\complete_project
+2019-07-15T01:46:17.965Z - normal: Initializing Cocos2d
+2019-07-15T01:46:19.843Z - normal: Initializing engine extends
+2019-07-15T01:46:20.165Z - success: asset-db-debugger loaded
+2019-07-15T01:46:20.168Z - success: baidu-adapter loaded
+2019-07-15T01:46:20.172Z - success: color-picker loaded
+2019-07-15T01:46:20.513Z - success: fb-audience-network loaded
+2019-07-15T01:46:20.890Z - success: fb-live-stream loaded
+2019-07-15T01:46:21.211Z - success: google-play-instant loaded
+2019-07-15T01:46:21.328Z - success: huawei-runtime loaded
+2019-07-15T01:46:23.469Z - success: cpk-publish loaded
+2019-07-15T01:46:23.470Z - success: jsb-adapter loaded
+2019-07-15T01:46:23.497Z - success: oppo-runtime loaded
+2019-07-15T01:46:23.502Z - success: package-manager loaded
+2019-07-15T01:46:24.351Z - success: qqplay-adapter loaded
+2019-07-15T01:46:24.353Z - success: runtime-dev-tools loaded
+2019-07-15T01:46:24.366Z - success: sdkbox loaded
+2019-07-15T01:46:24.371Z - success: tester loaded
+2019-07-15T01:46:24.374Z - success: ui-grid loaded
+2019-07-15T01:46:24.376Z - success: ui-kit-preview-extra loaded
+2019-07-15T01:46:24.412Z - success: ui-kit-preview loaded
+2019-07-15T01:46:24.414Z - success: ui-kit loaded
+2019-07-15T01:46:24.416Z - success: ui-tree loaded
+2019-07-15T01:46:24.478Z - success: vivo-runtime loaded
+2019-07-15T01:46:24.479Z - success: weapp-adapter loaded
+2019-07-15T01:46:24.480Z - success: xiaomi-adapter loaded
+2019-07-15T01:46:24.564Z - success: assets loaded
+2019-07-15T01:46:24.567Z - success: builder loaded
+2019-07-15T01:46:25.407Z - success: cocos-services loaded
+2019-07-15T01:46:25.415Z - success: console loaded
+2019-07-15T01:46:25.464Z - success: fb-instant-games loaded
+2019-07-15T01:46:25.490Z - success: google-instant-games loaded
+2019-07-15T01:46:25.497Z - success: hierarchy loaded
+2019-07-15T01:46:25.501Z - success: inspector loaded
+2019-07-15T01:46:25.503Z - success: keystore loaded
+2019-07-15T01:46:25.512Z - success: node-library loaded
+2019-07-15T01:46:25.528Z - success: package-asset loaded
+2019-07-15T01:46:25.531Z - success: preferences loaded
+2019-07-15T01:46:25.533Z - success: project-exporter loaded
+2019-07-15T01:46:25.537Z - success: project-importer loaded
+2019-07-15T01:46:25.540Z - success: project-settings loaded
+2019-07-15T01:46:25.546Z - success: scene loaded
+2019-07-15T01:46:25.547Z - success: simulator-debugger loaded
+2019-07-15T01:46:25.549Z - success: sprite-editor loaded
+2019-07-15T01:46:25.555Z - success: store loaded
+2019-07-15T01:46:25.560Z - success: timeline loaded
+2019-07-15T01:46:25.585Z - success: xiaomi-runtime loaded
+2019-07-15T01:46:27.218Z - normal: Loading packages
+2019-07-15T01:46:27.225Z - normal: Watching packages
+2019-07-15T01:46:27.407Z - info: Cocos Services load base data!
+2019-07-15T01:46:28.812Z - normal: Run Application
+2019-07-15T03:36:29.082Z - normal: Simulator: SCREEN DPI = 96, SCREEN SCALE = 1.00
+2019-07-15T03:36:29.084Z - normal: Simulator: WORKAREA WIDTH 1528.00, HEIGHT 773.00
+2019-07-15T03:36:29.084Z - normal: Simulator: FRAME SCALE = 0.75
+2019-07-15T03:36:29.178Z - normal: Simulator: Ready for GLSL
+2019-07-15T03:36:29.179Z - normal: Simulator: Ready for OpenGL 2.0
+2019-07-15T03:36:29.179Z - normal: Simulator: Project Config:
+2019-07-15T03:36:29.179Z - normal: Simulator:     project dir: F:\Programming environment\Cocos\CocosCreator\resources\cocos2d-x\simulator\win32\
+2019-07-15T03:36:29.179Z - normal: Simulator:     writable path: $(PROJDIR)\
+2019-07-15T03:36:29.180Z - normal: Simulator:     script file: $(PROJDIR)\main.js
+2019-07-15T03:36:29.180Z - normal: Simulator:     frame size: 640 x 960
+2019-07-15T03:36:29.180Z - normal: Simulator:     frame scale: 0.75
+2019-07-15T03:36:29.180Z - normal: Simulator:     show console: NO
+2019-07-15T03:36:29.180Z - normal: Simulator:     write debug log: NO ()
+2019-07-15T03:36:29.181Z - normal: Simulator:     listen: 
+2019-07-15T03:36:29.181Z - normal: Simulator:     debugger: none
+2019-07-15T03:36:29.181Z - normal: Simulator:     add searching path:
+2019-07-15T03:36:29.181Z - normal: Simulator: 
+2019-07-15T03:36:29.183Z - normal: Simulator: 
+2019-07-15T03:36:29.183Z - normal: Simulator: 
+2019-07-15T03:36:29.183Z - normal: Simulator: resetDesignResolution request
+2019-07-15T03:36:29.184Z - normal: Simulator: ------------------------------------------------
+2019-07-15T03:36:29.184Z - normal: Simulator: LOAD Js FILE: jsb-adapter/jsb-builtin.js
+2019-07-15T03:36:29.184Z - normal: Simulator: ------------------------------------------------
+2019-07-15T03:36:29.184Z - normal: Simulator: D/jswrapper (368): Initializing V8, version: 6.0.286.52
+2019-07-15T03:36:29.584Z - normal: Simulator: D/jswrapper (813): libuv version: 1.13.1
+2019-07-15T03:36:29.585Z - normal: Simulator: D/jswrapper (112): Debugger listening..., visit [ chrome-devtools://devtools/bundled/inspector.html?v8only=true&ws=0.0.0.0:5086/00010002-0003-4004-8005-000600070008 ] in chrome browser to debug!
+2019-07-15T03:36:29.585Z - normal: Simulator: D/jswrapper (115): For help see https://nodejs.org/en/docs/inspector
+2019-07-15T03:36:29.635Z - normal: Simulator: D/jswrapper (129): JS: Enable batch GL commands optimization!
+2019-07-15T03:36:29.636Z - normal: Simulator: resetDesignResolution request
+2019-07-15T03:36:29.636Z - normal: Simulator: ------------------------------------------------
+2019-07-15T03:36:29.636Z - normal: Simulator: LOAD Js FILE: main.js
+2019-07-15T03:36:29.637Z - normal: Simulator: ------------------------------------------------
+2019-07-15T03:36:30.046Z - normal: Simulator: iShow!
+2019-07-15T03:36:30.055Z - normal: Simulator: D/jswrapper (4159): glGetIntegerv: pname: 0x8b4c
+2019-07-15T03:36:30.070Z - normal: Simulator: D/jswrapper (129): JS: Cocos Creator v2.0.10
+2019-07-15T03:36:34.176Z - normal: Simulator: D/jswrapper (129): JS: LoadScene 5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5: 12.766999999999825ms
+2019-07-15T03:36:34.591Z - normal: Simulator: D/jswrapper (129): JS: Unknown keyCode: -1
+2019-07-15T03:36:35.084Z - normal: Simulator: D/jswrapper (129): JS: Unknown keyCode: -1
+2019-07-15T03:36:35.140Z - normal: Simulator: D/jswrapper (129): JS: Unknown keyCode: -1
+2019-07-15T03:36:35.176Z - normal: Simulator: D/jswrapper (129): JS: Unknown keyCode: -1
+2019-07-15T03:36:35.634Z - normal: Simulator: D/jswrapper (418): Debugger attached.
+2019-07-15T03:36:39.868Z - normal: Simulator: D/jswrapper (129): JS: LoadScene 5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5: 16.799999999999272ms
+2019-07-15T03:36:45.130Z - normal: Simulator: D/jswrapper (129): JS: LoadScene 5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5: 16.853000000000975ms
+2019-07-15T03:36:48.685Z - normal: Simulator: D/jswrapper (129): JS: LoadScene 5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5: 17.270999999997002ms
+2019-07-15T03:36:54.435Z - normal: Simulator: D/jswrapper (129): JS: LoadScene 5dcd99cb-77a4-4c95-a7d8-4b5b45295ae5: 18.52400000000125ms
+2019-07-15T03:36:57.534Z - normal: Simulator: D/jswrapper (452): ScriptEngine::cleanup begin ...
+2019-07-15T03:36:57.535Z - normal: Simulator: D/jswrapper (593): GC begin ..., (js->native map) size: 19, all objects: 95
+2019-07-15T03:36:57.595Z - normal: Simulator: D/jswrapper (601): GC end ..., (js->native map) size: 19, all objects: 95
+2019-07-15T03:36:57.595Z - normal: Simulator: D/jswrapper (593): GC begin ..., (js->native map) size: 19, all objects: 95
+2019-07-15T03:36:57.638Z - normal: Simulator: D/jswrapper (601): GC end ..., (js->native map) size: 19, all objects: 95
+2019-07-15T03:36:57.640Z - normal: Simulator: D/jswrapper (251): Destroy WebGLTexture (7) by GC
+2019-07-15T03:36:57.640Z - normal: Simulator: D/jswrapper (251): Destroy WebGLTexture (3) by GC
+2019-07-15T03:36:57.640Z - normal: Simulator: D/jswrapper (251): Destroy WebGLTexture (2) by GC
+2019-07-15T03:36:57.640Z - normal: Simulator: D/jswrapper (270): Destroy WebGLBuffer (3) by GC
+2019-07-15T03:36:57.640Z - normal: Simulator: D/jswrapper (270): Destroy WebGLBuffer (4) by GC
+2019-07-15T03:36:57.641Z - normal: Simulator: D/jswrapper (270): Destroy WebGLBuffer (1) by GC
+2019-07-15T03:36:57.641Z - normal: Simulator: D/jswrapper (270): Destroy WebGLBuffer (2) by GC
+2019-07-15T03:36:57.641Z - normal: Simulator: D/jswrapper (251): Destroy WebGLTexture (1) by GC
+2019-07-15T03:36:57.641Z - normal: Simulator: D/jswrapper (251): Destroy WebGLTexture (4) by GC
+2019-07-15T03:36:57.641Z - normal: Simulator: D/jswrapper (251): Destroy WebGLTexture (5) by GC
+2019-07-15T03:36:57.641Z - normal: Simulator: D/jswrapper (251): Destroy WebGLTexture (6) by GC
+2019-07-15T03:36:57.641Z - normal: Simulator: D/jswrapper (327): Destroy WebGLProgram (3) by GC
+2019-07-15T03:36:57.646Z - normal: Simulator: D/jswrapper (593): GC begin ..., (js->native map) size: 0, all objects: 0
+2019-07-15T03:36:57.690Z - normal: Simulator: D/jswrapper (601): GC end ..., (js->native map) size: 0, all objects: 0
+2019-07-15T03:36:57.695Z - normal: Simulator: D/jswrapper (515): ScriptEngine::cleanup end ...
+2019-07-15T03:36:57.800Z - warn: Simulator: libpng warning: iCCP: known incorrect sRGB profile
+2019-07-15T03:44:14.080Z - info: shutdown preview server
