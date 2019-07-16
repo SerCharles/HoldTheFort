@@ -41,8 +41,8 @@ const unitConstants = {
 
 
     //单位的造价，击杀获得的分数，经验，金币等
-    costRanged:100,
-    costMelee:100,
+    costRanged:10,
+    costMelee:10,
 
     killGainScoreRanged:10,
     killGainScoreMelee:10,
@@ -54,7 +54,7 @@ const unitConstants = {
     killGainMoneyRanged: 10,
 
     //攻击范围，代表两个单位中心的距离
-    attackRangeMelee: 50,
+    attackRangeMelee: 40,
     attackRangeRanged: 200,
 
     //子弹命中判定：两个中心距离小于某个值
@@ -66,18 +66,30 @@ const unitConstants = {
 }
 
 const gameConstants = {
+    //屏幕与网格信息
     screenWidth : 960,
-    screenHeight: 640,
+    screenHeight: 600,
     gridWidth: 60,
     gridHeight: 60,
     gridNumX: 16,
-    gridNumY: 10
+    gridNumY: 10,
+
+    //开始信息
+    startGold: 100,
+
+    //随机生成敌人的控制信息
+    minNextEnemyTime: 5,
+    maxNextEnemyTime: 10,
+    maxEnemyAtScene: 10
 }
 
 //判断一个点在哪个格子
 function getCurrentGridPoint(currentPlace) {
-    let x:number = Math.floor(currentPlace.x / gameConstants.gridWidth);
-    let y:number = Math.floor(currentPlace.y / gameConstants.gridHeight);
+    let x:number = Math.floor((currentPlace.x + (gameConstants.gridNumX / 2) * gameConstants.gridWidth)
+     / gameConstants.gridWidth);
+    let y:number = Math.floor((currentPlace.y  + (gameConstants.gridNumY / 2) * gameConstants.gridHeight) / 
+    gameConstants.gridHeight);
+
     let place:cc.Vec2;
     place = cc.v2(x,y);
     return place;
@@ -131,12 +143,55 @@ function getWorldPosition(node) {
 }
 
 function judgeOutOfRange(place) {
-    if(place.x <= 0 - (gameConstants.screenWidth / 2) || place.y <= (gameConstants.screenHeight / 2) 
-        || place.x >= (gameConstants.screenWidth / 2) || place.y >= (gameConstants.screenHeight / 2)) {
+    if(place.x < 0 - (gameConstants.screenWidth / 2) || place.y < 0 - (gameConstants.screenHeight / 2) 
+        || place.x > (gameConstants.screenWidth / 2) || place.y > (gameConstants.screenHeight / 2)) {
         return true;
     }
     else return false;
 }
 
+function judgePointInGrid(point, gridCenter, gridSize) {
+    let halfSize = cc.v2(gridSize.x / 2, gridSize.y / 2);
+    if(point.x >= gridCenter.x - halfSize.x && point.x <= gridCenter.x + halfSize.x 
+    && point.y >= gridCenter.y - halfSize.y && point.y <= gridCenter.y + halfSize.y) {
+        return true;
+    }
+    else return false;
+}
+
+
+function judgeUnitInGrid(unitCenter, unitSize, gridCenter, gridSize) {
+    //因为unit比grid小，因此判断四个节点就可以了
+    let halfScale:cc.Vec2;
+    halfScale = cc.v2(unitSize.x / 2, unitSize.y / 2);
+    let point1:cc.Vec2;
+    point1 = cc.v2(unitCenter.x - halfScale.x, unitCenter.y - halfScale.y);
+
+    let point2:cc.Vec2;
+    point2 = cc.v2(unitCenter.x + halfScale.x, unitCenter.y - halfScale.y);
+
+    let point3:cc.Vec2;
+    point3 = cc.v2(unitCenter.x - halfScale.x, unitCenter.y + halfScale.y);
+
+    let point4:cc.Vec2;
+    point4 = cc.v2(unitCenter.x + halfScale.x, unitCenter.y + halfScale.y);
+
+    if(judgePointInGrid(point1, gridCenter, gridSize) === true ||
+       judgePointInGrid(point2, gridCenter, gridSize) === true ||
+       judgePointInGrid(point2, gridCenter, gridSize) === true ||
+       judgePointInGrid(point2, gridCenter, gridSize) === true) {
+           return true;
+       }
+    else return false;
+}
+
+//网格坐标转换成相对canvas的坐标
+function gridPlaceToShowPlace(gridPlace) {
+    let showPlaceX = gameConstants.gridWidth * (gridPlace.x - (gameConstants.gridNumX / 2) + 0.5);
+    let showPlaceY = gameConstants.gridHeight * (gridPlace.y - (gameConstants.gridNumY / 2) + 0.5);
+    let showPlace = cc.v2(showPlaceX, showPlaceY);
+    return showPlace;
+}
+
 export {unitConstants, gameConstants, getCurrentGridPoint, getCurrentGridObject, getDistance, calculateDamage,
-     getWorldPosition, judgeOutOfRange};
+     getWorldPosition, judgeOutOfRange, judgePointInGrid, judgeUnitInGrid, gridPlaceToShowPlace};

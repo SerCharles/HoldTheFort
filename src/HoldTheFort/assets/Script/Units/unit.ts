@@ -86,11 +86,23 @@ export class unit extends cc.Component {
     @property(cc.Vec2)
     movingDirection: cc.Vec2 = undefined;
 
+    //死亡音效
+    @property(cc.AudioClip)
+    deathAudio:cc.AudioClip = null;
+
     //更新自身属性的函数，每次update调用
     //更新死亡
     updateDeath(){
         if(this.currentHealth <= 0) {
             this.valid = false;
+            cc.audioEngine.playEffect(this.deathAudio, false);
+
+
+            //敌方死亡，增加经验和金币
+            if(this.faction === false) {  
+                this.node.dispatchEvent( new cc.Event.EventCustom('getScore', true) );
+                this.node.dispatchEvent( new cc.Event.EventCustom('spawnMoney', true) );
+            }
             this.node.destroy();
         }
     }
@@ -135,12 +147,36 @@ export class unit extends cc.Component {
         }
     }
 
+    //控制更新生命，攻击时间条，经验条在士兵子类里更新
+    updateHealthBar(){
+        let bar = this.node.getChildByName('healthBar');
+        let healthRatio = this.currentHealth / this.maxHealth;
+        let barShow = bar.getComponent(cc.ProgressBar);
+        barShow.progress = healthRatio;
+    }
+
+    updateAttackBar(){
+        let bar = this.node.getChildByName('attackBar');
+        let attackRatio;
+        if(this.currentStatus === true) {
+            //目前可以攻击
+            attackRatio = 1;
+        }
+        else {
+            attackRatio = this.currentTimeSinceAttack / this.attackTime;
+        }
+        let barShow = bar.getComponent(cc.ProgressBar);
+        barShow.progress = attackRatio;
+    }
+
     update(dt) {
         this.updateDeath();
         this.updateHealth(dt);
         this.updateLevel();
         this.updatePlace(dt);
         this.updateAttackTime(dt);
+        this.updateAttackBar();
+        this.updateHealthBar();
     }
 
     //更新的辅助函数

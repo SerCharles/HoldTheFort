@@ -23,7 +23,26 @@ export class meleeSoldier extends melee {
         this.cost = unitConstants.costMelee;
         this.attackGetExp = unitConstants.attackGainExpMelee;
     }
+
+    updateExpBar(){
+        let bar = this.node.getChildByName('expBar');
+        let expRatio;
+        if(this.currentLevel === this.maxLevel) {
+            expRatio = 1;
+        }
+        else {
+            expRatio = this.currentExp / unitConstants.expRequiredEachLevel[this.currentLevel - 1];
+        }
+        let barShow = bar.getComponent(cc.ProgressBar);
+        barShow.progress = expRatio;
+    }
+
     onLoad() {
         this.changeDirection(this.node.position);
+    }
+    
+    update(dt) {
+        super.update(dt);
+        this.updateExpBar();
     }
 }
