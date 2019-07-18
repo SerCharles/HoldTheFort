@@ -24,12 +24,12 @@ const unitConstants = {
     defenseRangedEachLevel:[10,20,35],
     defenseMeleeEachLevel:[20,35,50],
 
-    speedUnit: 10,
-    speedAmmo: 200,
-    speedCannon: 50,
+    speedUnit: 20,
+    speedAmmo: 400,
+    speedCannon: 200,
 
     //在城堡上运动速度只是原先的10%
-    speedRatioCastle: 10,
+    speedRatioCastle: 50,
 
     //近战兵在攻城时攻击力,防御力只是原来的50%
     attackRatioCastleMelee: 50,
@@ -60,9 +60,12 @@ const unitConstants = {
     //子弹命中判定：两个中心距离小于某个值
     ammoHitRange:25,
 
-    //近战和远程的攻击时间
+    //每个兵种的装填时间
     attackTimeMelee: 2,
     attackTimeRanged: 5,
+
+
+
 }
 
 const gameConstants = {
@@ -80,8 +83,26 @@ const gameConstants = {
     //随机生成敌人的控制信息
     minNextEnemyTime: 5,
     maxNextEnemyTime: 10,
-    maxEnemyAtScene: 10
-}
+    maxEnemyAtScene: 10,
+
+    //敌人占领广场的最大时间
+    enemyHoldSquareMaxTime: 30,
+    
+    //广场范围
+    squareRange: 40,
+
+};
+
+//关于网络连接的常量
+const netWorkConstants = {
+    host : '62.234.128.178:8000',
+    username: 'ubuntu',
+    password: '24dZe,N^~`RKw',
+    url: '/score',
+    completeUrl: '62.234.128.178:8000/score',
+} 
+
+
 
 //判断一个点在哪个格子
 function getCurrentGridPoint(currentPlace) {
@@ -193,5 +214,14 @@ function gridPlaceToShowPlace(gridPlace) {
     return showPlace;
 }
 
-export {unitConstants, gameConstants, getCurrentGridPoint, getCurrentGridObject, getDistance, calculateDamage,
-     getWorldPosition, judgeOutOfRange, judgePointInGrid, judgeUnitInGrid, gridPlaceToShowPlace};
+//定义一个全局模块globalModule，全局类globalClass，用于跨场景传参
+module globalModule {
+  export class globalClass {
+    static score : number = 0;
+    static historyMaxScore : number = 0;
+  }
+}
+
+
+export {unitConstants, gameConstants, netWorkConstants, getCurrentGridPoint, getCurrentGridObject, getDistance, calculateDamage,
+     getWorldPosition, judgeOutOfRange, judgePointInGrid, judgeUnitInGrid, gridPlaceToShowPlace, globalModule};
