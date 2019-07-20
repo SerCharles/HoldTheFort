@@ -26,12 +26,17 @@ export class mainGameButton extends cc.Component {
         //枚举节点名称，来获取自身代表的兵种
         let theName = this.node.name;
         if(theName === 'meleeButton') {
-            this.type = 0;
+            this.type = unitConstants.typeMelee;
             this.cost = unitConstants.costMelee;
         }
         else if(theName === 'rangedButton') {
-            this.type = 1;
+            this.type = unitConstants.typeRanged;
             this.cost = unitConstants.costRanged;
+        }
+
+        else if(theName === 'mortarButton') {
+            this.type = unitConstants.typeMortar;
+            this.cost = unitConstants.costMortar;
         }
 
         //修改代表花费cost的label
@@ -56,19 +61,30 @@ export class mainGameButton extends cc.Component {
 
     //处理事件：点击button，此时回到主界面就会显示
     onTouch() {
+        
 
-        let mainGame = this.node.parent.getComponent('mainGame');
-        let currentMoney = mainGame.goldNumber;
+
+        let game = null;
+        game = this.node.parent.getComponent('mainGame');
+        if(game === null) {
+            this.node.parent.getComponent('artillaryGame'); 
+        }
+        let currentMoney = game.goldNumber;
         if(currentMoney < this.cost) {
             return;
         }
-        mainGame.chosenType = this.type;
+        game.chosenType = this.type;
     }
 
 
     update (dt) {
-        let mainGame = this.node.parent.getComponent('mainGame');
-        let currentMoney = mainGame.goldNumber;
+        let game = null;
+        game = this.node.parent.getComponent('mainGame');
+        if(game === null) {
+            this.node.parent.getComponent('artillaryGame'); 
+        }
+
+        let currentMoney = game.goldNumber;
         let font = this.node.getChildByName('costLabel');
         if(currentMoney < this.cost) {
             //钱不够，设置成不可交互

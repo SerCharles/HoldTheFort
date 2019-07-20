@@ -17,12 +17,12 @@ export class ranged extends unit {
     constructor(){
         super();
 
-        //最大值初始化
+        //最大值和静态属性初始化
         this.maxHealth = unitConstants.healthRangedEachLevel[0];
         this.maxAttack = unitConstants.attackRangedEachLevel[0];
         this.maxDefense = unitConstants.defenseRangedEachLevel[0];
         this.maxHealthRestoration = unitConstants.healthRestorationEachLevel[0];
-        this.type = 1;
+        this.type = unitConstants.typeRanged;
         this.attackRange = unitConstants.attackRangeRanged;
         this.attackTime = unitConstants.attackTimeRanged;
 

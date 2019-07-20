@@ -19,13 +19,22 @@ export class rangedEnemy extends ranged {
         //敌军，不能升级，可以移动，有击杀奖励
         this.maxAttack = this.maxAttack * ( unitConstants.attackRatioGroundRanged / 100);
         this.currentAttack = this.maxAttack;
-        this.faction = false;
+        this.faction = unitConstants.factionEnemy;
         this.maxLevel = 1;
         this.currentLevel = 1;
         this.maxSpeed = unitConstants.speedUnit;
         this.currentSpeed = this.maxSpeed;
         this.killGetMoney = unitConstants.killGainMoneyRanged;
         this.killGetScore = unitConstants.killGainScoreRanged;
+        this.killGetExp = unitConstants.killGainExpRanged;
     }
     
+    //敌人，没有经验条和等级显示，因此把这两个函数覆盖为空
+    updateExpBar() {
+
+    }
+    updateLevelLabel() {
+
+    }
+
 }

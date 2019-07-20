@@ -15,8 +15,12 @@ export class leaderboardButton extends cc.Component {
     onLoad() {
         //绑定点击事件
         this.node.on('click',function(event){
-            let mainGame = this.node.parent.getComponent('mainGame');
-            globalModule.globalClass.score = mainGame.scoreNumber;
+            let game = null;
+            game = this.node.parent.getComponent('mainGame');
+            if(game === null) {
+                game = this.node.parent.getComponent('artillaryGame');
+            }
+            globalModule.globalClass.score = game.scoreNumber;
             cc.director.loadScene("finishScene");
         },this);
     }

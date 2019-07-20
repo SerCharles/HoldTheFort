@@ -17,7 +17,7 @@ export class rangedSoldier extends ranged {
     constructor() {
         super();
         //我军，可以升级，不能移动，有造价
-        this.faction = true;
+        this.faction = unitConstants.factionSoldier;
         this.maxLevel = unitConstants.maxLevel;
         this.maxSpeed = 0;
         this.currentSpeed = 0;
@@ -26,24 +26,6 @@ export class rangedSoldier extends ranged {
 
     }
 
-    //更新经验条
-    updateExpBar(){
-        let bar = this.node.getChildByName('expBar');
-        let expRatio;
-        if(this.currentLevel === this.maxLevel) {
-            expRatio = 1;
-        }
-        else {
-            expRatio = this.currentExp / unitConstants.expRequiredEachLevel[this.currentLevel - 1];
-        }
-                let barShow = bar.getComponent(cc.ProgressBar);
-        barShow.progress = expRatio;
-    }
-
-    //更新等级显示
-    updateLevelLabel() {
-        this.levelShow.string = 'LV.'+this.currentLevel;
-    }
 
     onLoad(){
         this.changeDirection(this.node.position);
@@ -51,7 +33,5 @@ export class rangedSoldier extends ranged {
 
     update(dt) {
         super.update(dt);
-        this.updateExpBar();
-        this.updateLevelLabel();
     }
 }

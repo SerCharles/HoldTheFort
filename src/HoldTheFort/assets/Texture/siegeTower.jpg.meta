@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "5134e7dc-b712-4617-afae-98102a3a869c",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "siegeTower": {
+      "ver": "1.0.4",
+      "uuid": "3acc2359-b61f-4dd9-9240-1d5339bd86ad",
+      "rawTextureUuid": "5134e7dc-b712-4617-afae-98102a3a869c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 60,
+      "height": 60,
+      "rawWidth": 60,
+      "rawHeight": 60,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

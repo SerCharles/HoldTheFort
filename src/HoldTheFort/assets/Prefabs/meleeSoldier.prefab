@@ -30,7 +30,7 @@
       }
     ],
     "_active": true,
-    "_level": 1,
+    "_level": 2,
     "_components": [
       {
         "__id__": 26
@@ -63,7 +63,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": -150,
-      "y": -80,
+      "y": -90,
       "z": 0
     },
     "_scale": {
@@ -251,9 +251,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "6c03bd94-7c3e-4c07-b79b-ae89bfadff46"
+      "__id__": 0
     },
-    "fileId": "e5pHPii1tIhZ9+m7Z/GaNO",
+    "fileId": "85BFFvF0ZGSYtI8MYJoO/R",
     "sync": false
   },
   {
@@ -307,9 +307,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "6c03bd94-7c3e-4c07-b79b-ae89bfadff46"
+      "__id__": 0
     },
-    "fileId": "e3Cwhyln9GE5mnajti1OMU",
+    "fileId": "66nyLDt7ZM5LldaGRmVBEZ",
     "sync": false
   },
   {
@@ -477,9 +477,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "6c03bd94-7c3e-4c07-b79b-ae89bfadff46"
+      "__id__": 0
     },
-    "fileId": "f5vB0qjfxOboxok3zDvLkY",
+    "fileId": "9cwgvbIbhHfa4DhEx//2JE",
     "sync": false
   },
   {
@@ -533,9 +533,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "6c03bd94-7c3e-4c07-b79b-ae89bfadff46"
+      "__id__": 0
     },
-    "fileId": "baPfZdIw9KE4aGGu8tL2jG",
+    "fileId": "4bqX2bhENFh5Wyq/W8mhCA",
     "sync": false
   },
   {
@@ -703,9 +703,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "6c03bd94-7c3e-4c07-b79b-ae89bfadff46"
+      "__id__": 0
     },
-    "fileId": "26dZIPoWtEaoh35ZYs4Qk4",
+    "fileId": "d8zCzdulNAd7FStDjy0Zyj",
     "sync": false
   },
   {
@@ -759,9 +759,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "6c03bd94-7c3e-4c07-b79b-ae89bfadff46"
+      "__id__": 0
     },
-    "fileId": "78kl1GtehE0rCbkjpLNNM9",
+    "fileId": "dajaXvN49C3qTy+FE3vbdY",
     "sync": false
   },
   {
@@ -857,9 +857,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "6c03bd94-7c3e-4c07-b79b-ae89bfadff46"
+      "__id__": 0
     },
-    "fileId": "cbc+XhOetL/qbVIU62bqs7",
+    "fileId": "9d2VY+fEhAqJHaJujhb1iL",
     "sync": false
   },
   {
@@ -873,7 +873,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "cc4fcdd5-8de3-4924-bf8f-be625d9f9260"
+      "__uuid__": "84bf1dca-a661-4d3f-976a-9bc017d6d637"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -907,6 +907,7 @@
     "attackGetExp": 20,
     "killGetScore": 0,
     "killGetMoney": 0,
+    "killGetExp": 0,
     "cost": 100,
     "attackTime": 2,
     "currentHealth": 300,
@@ -938,9 +939,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "6c03bd94-7c3e-4c07-b79b-ae89bfadff46"
+      "__id__": 0
     },
-    "fileId": "68+eQhr8dAmq2zioXOuRpf",
+    "fileId": "efNJn1EANN6ZbTbU9WFWvx",
     "sync": false
   }
 ]

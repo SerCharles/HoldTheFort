@@ -24,7 +24,7 @@
       }
     ],
     "_active": true,
-    "_level": 2,
+    "_level": 1,
     "_components": [
       {
         "__id__": 16
@@ -57,7 +57,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": -389,
-      "y": -27,
+      "y": -156,
       "z": 0
     },
     "_scale": {
@@ -245,7 +245,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
     },
     "fileId": "25Ggl5uDxNXId8K4txUKGg",
     "sync": false
@@ -301,7 +301,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
     },
     "fileId": "85ZdLrc4NIxrFttKohcF7m",
     "sync": false
@@ -471,7 +471,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
     },
     "fileId": "8fIkzAQipPHK7xsKw57o/H",
     "sync": false
@@ -527,7 +527,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
     },
     "fileId": "1dRZMR9P9Ho74IOrnDx1f8",
     "sync": false
@@ -543,7 +543,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "79bd3dac-ace1-4c84-8eb6-7b81a5c2b57a"
+      "__uuid__": "05616b52-5dd4-4b50-b1d8-e5f11061dd3c"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -571,12 +571,13 @@
     "maxHealth": 300,
     "maxAttack": 150,
     "maxDefense": 20,
-    "maxSpeed": 10,
+    "maxSpeed": 20,
     "maxLevel": 1,
     "maxHealthRestoration": 2,
     "attackGetExp": 0,
     "killGetScore": 10,
     "killGetMoney": 10,
+    "killGetExp": 20,
     "cost": 0,
     "attackTime": 2,
     "currentHealth": 300,
@@ -597,6 +598,7 @@
     "deathAudio": {
       "__uuid__": "e481deb0-1f84-4d5a-87ef-d7987b479004"
     },
+    "levelShow": null,
     "_id": ""
   },
   {
@@ -605,7 +607,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
     },
     "fileId": "2bG80XprFOcK4g0/imaw9t",
     "sync": false

@@ -13,7 +13,7 @@ export default class artillaryCareerButton extends cc.Component {
     onLoad() {
         //绑定点击事件
         this.node.on('click',function(event){
-            cc.director.loadScene("mainGame");
+            cc.director.loadScene("artillaryGame");
         },this);
     }
     

@@ -56,8 +56,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -371,
-      "y": -225,
+      "x": -444,
+      "y": -114,
       "z": 0
     },
     "_scale": {
@@ -245,9 +245,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "41f65539-1fff-4a03-8f66-da0534a27063"
     },
-    "fileId": "20nCON79ZE6ZwyXjkBNEX0",
+    "fileId": "7499dl2JZHqoTGijnmw692",
     "sync": false
   },
   {
@@ -301,9 +301,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "41f65539-1fff-4a03-8f66-da0534a27063"
     },
-    "fileId": "e2N3BfzmdIDbTYNa+p0mu4",
+    "fileId": "e2q5BVpBxBO6QHyndnzAlb",
     "sync": false
   },
   {
@@ -471,9 +471,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "41f65539-1fff-4a03-8f66-da0534a27063"
     },
-    "fileId": "a3CtU5fulBd7ZxwI4YlJvv",
+    "fileId": "6fzzDmUNpIOJUcbhhoU761",
     "sync": false
   },
   {
@@ -527,9 +527,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "41f65539-1fff-4a03-8f66-da0534a27063"
     },
-    "fileId": "4cVWOObDVKzbNfvyri5ZzH",
+    "fileId": "b5u0AG4ydLgpIKaTdDBOBB",
     "sync": false
   },
   {
@@ -543,7 +543,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "b6ccf95f-f8f2-487d-acfd-592b917fa6ef"
+      "__uuid__": "8486acb8-be23-4058-9b51-3efd87ce8513"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -571,12 +571,13 @@
     "maxHealth": 200,
     "maxAttack": 75,
     "maxDefense": 10,
-    "maxSpeed": 10,
+    "maxSpeed": 20,
     "maxLevel": 1,
     "maxHealthRestoration": 2,
     "attackGetExp": 0,
     "killGetScore": 10,
     "killGetMoney": 10,
+    "killGetExp": 20,
     "cost": 0,
     "attackTime": 5,
     "currentHealth": 200,
@@ -597,6 +598,7 @@
     "deathAudio": {
       "__uuid__": "e481deb0-1f84-4d5a-87ef-d7987b479004"
     },
+    "levelShow": null,
     "_id": ""
   },
   {
@@ -605,9 +607,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "41f65539-1fff-4a03-8f66-da0534a27063"
     },
-    "fileId": "03At3SFs9Cp653KMPAZt+x",
+    "fileId": "93b8UFDTpA6aws7oDbZKgI",
     "sync": false
   }
 ]

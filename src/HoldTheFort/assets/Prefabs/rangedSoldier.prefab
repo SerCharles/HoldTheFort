@@ -30,7 +30,7 @@
       }
     ],
     "_active": true,
-    "_level": 1,
+    "_level": 2,
     "_components": [
       {
         "__id__": 26
@@ -251,9 +251,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "58998239-3b1a-4fdc-9274-a88a6a37ca9d"
+      "__id__": 0
     },
-    "fileId": "e5w9X5VYtFMIZZhDE3FoqW",
+    "fileId": "c5SIcjPyFBXqCFQR08DUS/",
     "sync": false
   },
   {
@@ -307,9 +307,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "58998239-3b1a-4fdc-9274-a88a6a37ca9d"
+      "__id__": 0
     },
-    "fileId": "7baM6Mz5dHGYIA5O9yXgRQ",
+    "fileId": "712gyFlqhHabykJRdEfcc0",
     "sync": false
   },
   {
@@ -477,9 +477,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "58998239-3b1a-4fdc-9274-a88a6a37ca9d"
+      "__id__": 0
     },
-    "fileId": "51OvHNU2tLQJQ6p7WaetWS",
+    "fileId": "51JbSCfi1MCLD3jXBrMwCV",
     "sync": false
   },
   {
@@ -533,9 +533,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "58998239-3b1a-4fdc-9274-a88a6a37ca9d"
+      "__id__": 0
     },
-    "fileId": "e8jKD7Q8ZL07InXa/sf9j4",
+    "fileId": "c5MyrhKU1G8a4aAUfepbPk",
     "sync": false
   },
   {
@@ -703,9 +703,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "58998239-3b1a-4fdc-9274-a88a6a37ca9d"
+      "__id__": 0
     },
-    "fileId": "70cePsb5pFPqvCkPuQW/2C",
+    "fileId": "3b3y5kugBBa61nQZtO2ptP",
     "sync": false
   },
   {
@@ -759,9 +759,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "58998239-3b1a-4fdc-9274-a88a6a37ca9d"
+      "__id__": 0
     },
-    "fileId": "067zGbSjdP0o791wn/DmTV",
+    "fileId": "abQ08t7JdCLYxeu02fxqSb",
     "sync": false
   },
   {
@@ -857,9 +857,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "58998239-3b1a-4fdc-9274-a88a6a37ca9d"
+      "__id__": 0
     },
-    "fileId": "43zyrqfy9FLYghAiEOlvpX",
+    "fileId": "95ry9HP2BGUqBQBp0jZDzL",
     "sync": false
   },
   {
@@ -873,7 +873,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "2e3de424-4c00-4052-8c36-3d694b410a24"
+      "__uuid__": "e19dfeda-b99a-469a-adb3-c29b26022c38"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -907,6 +907,7 @@
     "attackGetExp": 20,
     "killGetScore": 0,
     "killGetMoney": 0,
+    "killGetExp": 0,
     "cost": 10,
     "attackTime": 5,
     "currentHealth": 200,
@@ -938,9 +939,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "58998239-3b1a-4fdc-9274-a88a6a37ca9d"
+      "__id__": 0
     },
-    "fileId": "31uKlXRmJJ259txZ3r+ut4",
+    "fileId": "56311d69pKaLpN8F5jT3YI",
     "sync": false
   }
 ]

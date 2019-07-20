@@ -1,13 +1,13 @@
 /*
 文件名：ammo.ts
-描述：所有弹药的基类
+描述：子弹类
 当前版本：1.0.0
 时间：7/12/2019
 */
 
 const {ccclass, property} = cc._decorator;
 
-import {gameConstants, unitConstants, judgeOutOfRange} from  '../constants';
+import {gameConstants, unitConstants, judgeOutOfRange, globalModule} from  '../constants';
 
 
 @ccclass
@@ -24,7 +24,7 @@ export class ammo extends cc.Component {
 
     //true:我军 false：敌军
     @property(Boolean)
-    faction: boolean = true;
+    faction: boolean = unitConstants.factionSoldier;
 
     @property(cc.Vec2)
     movingDirection:cc.Vec2 = undefined;
@@ -50,9 +50,12 @@ export class ammo extends cc.Component {
     }
     
     update(dt){
+        //暂停
+        if(globalModule.globalClass.whetherPlayGame === false) return;
+
+
         if(this.valid === false) {
             this.node.destroy();
-            //todo:音效
         }
         if(this.movingDirection !== undefined){
             this.node.x += this.speed * this.movingDirection.x * dt;

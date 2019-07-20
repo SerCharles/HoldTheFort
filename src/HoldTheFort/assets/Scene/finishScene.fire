@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.4352752816480622,
-      "y": 0.4352752816480622,
+      "x": 0.43531250953674316,
+      "y": 0.43531250953674316,
       "z": 1
     },
     "_quat": {
@@ -371,7 +371,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 344.53,
+      "width": 435.21,
       "height": 100
     },
     "_anchorPoint": {
@@ -414,9 +414,9 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "History Record:",
-    "_N$string": "History Record:",
-    "_fontSize": 50,
+    "_string": "History Record:19000",
+    "_N$string": "History Record:19000",
+    "_fontSize": 45,
     "_lineHeight": 100,
     "_enableWrapText": true,
     "_N$file": null,
@@ -561,7 +561,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 259.42,
+      "width": 398.46,
       "height": 100
     },
     "_anchorPoint": {
@@ -604,8 +604,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "Your Score:",
-    "_N$string": "Your Score:",
+    "_string": "Your Score:10000",
+    "_N$string": "Your Score:10000",
     "_fontSize": 50,
     "_lineHeight": 100,
     "_enableWrapText": true,

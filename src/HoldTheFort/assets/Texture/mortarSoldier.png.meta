@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "974f4a97-1bce-43d8-b92a-964b5e37be35",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "mortarSoldier": {
+      "ver": "1.0.4",
+      "uuid": "d13f4676-fb84-4a10-8707-f11bb6842d89",
+      "rawTextureUuid": "974f4a97-1bce-43d8-b92a-964b5e37be35",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 40,
+      "height": 40,
+      "rawWidth": 40,
+      "rawHeight": 40,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "d7669a7a-9696-4dac-81fd-e9fdab50365b",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "soldierMelee": {
+      "ver": "1.0.4",
+      "uuid": "84bf1dca-a661-4d3f-976a-9bc017d6d637",
+      "rawTextureUuid": "d7669a7a-9696-4dac-81fd-e9fdab50365b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 40,
+      "height": 40,
+      "rawWidth": 40,
+      "rawHeight": 40,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

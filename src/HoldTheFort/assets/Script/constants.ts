@@ -16,18 +16,51 @@ const unitConstants = {
     //按等级定义的最大生命，攻击，防御，速度
     healthRangedEachLevel:[200,240,300],
     healthMeleeEachLevel:[300,380,450],
+    healthMortarEachLevel:[200,240,300],
+    healthSelfBomb:350,
+    healthTower:1000,
     healthRestorationEachLevel:[2,3,5],
 
     attackRangedEachLevel:[150,170,200],
     attackMeleeEachLevel:[150,170,200],
+    attackMortarEachLevel:[300,400,500],
+    attackTower:0,
+    attackSelfBomb: 300,
 
     defenseRangedEachLevel:[10,20,35],
     defenseMeleeEachLevel:[20,35,50],
+    defenseMortarEachLevel:[10,20,35],
+    defenseTower: 0,
+    defenseSelfBomb: 35,
 
     speedUnit: 20,
+    speedTower: 20,
+    speedMortar: 10,
+    speedSelfBomb: 30,
     speedAmmo: 400,
-    speedCannon: 200,
+    speedShell: 200,
 
+
+    //攻击范围，代表两个单位中心的距离
+    attackRangeMelee: 40,
+    attackRangeRanged: 200,
+    attackRangeMortar: 600,
+    attackRangeSelfBomb: 40,
+    attackRangeTower: 0,
+
+    //子弹，炮弹命中判定：两个中心距离小于某个值
+    ammoHitRange:25,
+    shellHitRange:100,
+    
+    //两点之间距离小于5，视为同一个点
+    minRange: 5,
+
+    //每个兵种的装填时间
+    attackTimeMelee: 2,
+    attackTimeRanged: 5,
+    attackTimeMortar: 15,
+
+    //敌人在城堡上的debuff百分比
     //在城堡上运动速度只是原先的10%
     speedRatioCastle: 50,
 
@@ -41,32 +74,48 @@ const unitConstants = {
 
 
     //单位的造价，击杀获得的分数，经验，金币等
-    costRanged:10,
-    costMelee:10,
+    costRanged: 50,
+    costMelee: 50,
+    costMortar: 200,
 
     killGainScoreRanged:10,
     killGainScoreMelee:10,
+    killGainScoreMortar: 20,
+    killGainScoreSelfBomb: 20,
+    killGainScoreTower: 20,
 
+    //标准模式是攻击加经验
     attackGainExpRanged:20,
     attackGainExpMelee:20,
+    attackGainExpMortar: 40,
+
+    //炮兵模式是击杀加经验
+    killGainExpRanged: 20,
+    killGainExpMelee: 20,
+    killGainExpMortar: 40,
+    killGainExpSelfBomb: 40,
+    killGainExpTower: 40,
 
     killGainMoneyMelee: 10,
     killGainMoneyRanged: 10,
-
-    //攻击范围，代表两个单位中心的距离
-    attackRangeMelee: 40,
-    attackRangeRanged: 200,
-
-    //子弹命中判定：两个中心距离小于某个值
-    ammoHitRange:25,
-
-    //每个兵种的装填时间
-    attackTimeMelee: 2,
-    attackTimeRanged: 5,
+    killGainMoneyMortar: 20,
+    killGainMoneySelfBomb: 20,
+    killGainMoneyTower: 20,
 
 
 
-}
+    //用常量定义了阵营和属性，还有状态码，提高代码可读性
+    factionSoldier: true,
+    factionEnemy: false,
+    typeMelee: 0,
+    typeRanged: 1,
+    typeMortar: 2,
+    typeSelfBomb: 3,
+    typeSiegeTower: 4,
+    statusCanAttack: true,
+    statusNotAttack: false,
+
+};
 
 const gameConstants = {
     //屏幕与网格信息
@@ -78,18 +127,38 @@ const gameConstants = {
     gridNumY: 10,
 
     //开始信息
-    startGold: 100,
+    startGold: 1000,
 
     //随机生成敌人的控制信息
-    minNextEnemyTime: 5,
-    maxNextEnemyTime: 10,
-    maxEnemyAtScene: 10,
+    minNextSoldierTime: 8,
+    maxNextSoldierTime: 15,
+    minNextEnemyTimeCommon: 5,
+    maxNextEnemyTimeCommon: 10,
+    minNextEnemyTimeSpecial: 10,
+    maxNextEnemyTimeSpecial: 20,
+    minNextEnemyTimeTower: 40,
+    maxNextEnemyTimeTower: 60,
+    maxEnemyAtScene: 20,
+
+    //随机生成攻城塔附带敌兵的信息
+    generateSiegeTowerPlaceX: 250,
+    generateMeleeNumber: 4,
+    generateMeleeX: [300,350,400,450],
+    generateRangedNumber: 2,
+    generateRangedY: [-50, 50],
 
     //敌人占领广场的最大时间
     enemyHoldSquareMaxTime: 30,
     
     //广场范围
     squareRange: 40,
+
+    //地形类型的定义，能增加可读性
+    terrainPlain: false,
+    terrainCastle: true,
+
+    //正无穷
+    maxNumber: 114514,
 
 };
 
@@ -102,7 +171,12 @@ const netWorkConstants = {
     completeUrl: '62.234.128.178:8000/score',
 } 
 
-
+//记录城堡格子的网格坐标
+const castleBlocks = {
+    castleNumber: 20,
+    castleBlocksX: [5,5,5,5,5,5,6,7,8,9,10,6,7,8,9,10,10,10,10,10],
+    castleBlocksY: [2,3,4,5,6,7,2,2,2,2,2,7,7,7,7,7,3,4,5,6]
+}
 
 //判断一个点在哪个格子
 function getCurrentGridPoint(currentPlace) {
@@ -152,10 +226,17 @@ function getDistance(place1,place2) {
     return Math.sqrt(dx * dx + dy * dy);
 }
 
-//计算伤害
+//计算攻击伤害(子弹，近战)
 function calculateDamage(attack, defense){
 
     return (attack * ((100 - defense) / 100));
+}
+
+//计算爆炸伤害，最大伤害与攻防关系和近战/子弹相同，而且实际伤害是最大伤害关于距离的线性衰减结果
+function calculateShellDamage(attack, defense, distance, range) {
+    let damageMax = calculateDamage(attack, defense);
+    let damageReal = damageMax * (1 - distance / range);
+    return damageReal;
 }
 
 //读取一个节点在世界坐标系的位置
@@ -219,9 +300,14 @@ module globalModule {
   export class globalClass {
     static score : number = 0;
     static historyMaxScore : number = 0;
+
+    //控制游戏是否暂停,音效是否播放
+    static whetherPlayGame: boolean = true;
+    static whetherHasSound: boolean = true;
   }
 }
 
 
-export {unitConstants, gameConstants, netWorkConstants, getCurrentGridPoint, getCurrentGridObject, getDistance, calculateDamage,
-     getWorldPosition, judgeOutOfRange, judgePointInGrid, judgeUnitInGrid, gridPlaceToShowPlace, globalModule};
+export {unitConstants, gameConstants, netWorkConstants, getCurrentGridPoint, getCurrentGridObject, getDistance, calculateDamage, 
+    calculateShellDamage, getWorldPosition, judgeOutOfRange, judgePointInGrid, judgeUnitInGrid, gridPlaceToShowPlace, globalModule,
+castleBlocks};

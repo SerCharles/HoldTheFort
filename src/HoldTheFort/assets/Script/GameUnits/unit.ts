@@ -7,7 +7,7 @@
 
 const {ccclass, property} = cc._decorator;
 
-import {gameConstants, unitConstants, getDistance} from  '../constants';
+import {gameConstants, unitConstants, getDistance, globalModule} from  '../constants';
 
 //士兵类：所有士兵的基类
 //描述：属性上，定义了所有士兵的生命，攻击，防御，速度，等级，经验等基本属性，以及被击杀奖励，造价等
@@ -36,6 +36,8 @@ export class unit extends cc.Component {
     @property(Number)
     killGetMoney: number = 0;
     @property(Number)
+    killGetExp: number = 0;
+    @property(Number)
     cost: number = 0;
     @property(Number)
     attackTime: number = 0;
@@ -60,7 +62,7 @@ export class unit extends cc.Component {
     
     //状态:true代表可以攻击（速度不为0），false代表正在装填（速度为0）
     @property(Boolean)
-    currentStatus: boolean = true;
+    currentStatus: boolean = unitConstants.statusCanAttack;
 
     //种类：0代表近战，1代表远程。。。。
     @property(Number)
@@ -95,12 +97,33 @@ export class unit extends cc.Component {
     @property(cc.Label)
     levelShow:cc.Label = null;
 
-    //更新自身属性的函数，每次update调用
+//更新自身属性的函数，每次update调用
+//更新内在属性，比如死活，生命恢复，弹药装填，位置，等级与经验，还有生命经验攻击三个条
+//因为大多数单位都有这些更新，因此在unit里都封装上，如果有的单位不需要这些更新，就用空函数覆盖
+    update(dt) {
+        //暂停
+        if(globalModule.globalClass.whetherPlayGame === false) return;
+
+        this.updateDeath();
+        this.updateHealth(dt);
+        this.updateLevel();
+        this.updatePlace(dt);
+        this.updateAttackTime(dt);
+        this.updateAttackBar();
+        this.updateHealthBar();
+        this.updateExpBar();
+        this.updateLevelLabel();
+    }
+
+
     //更新死亡
     updateDeath(){
         if(this.currentHealth <= 0) {
             this.valid = false;
-            cc.audioEngine.playEffect(this.deathAudio, false);
+
+            if(globalModule.globalClass.whetherHasSound === true) {
+                cc.audioEngine.playEffect(this.deathAudio, false);
+            }
 
 
             //敌方死亡，增加经验和金币
@@ -142,15 +165,15 @@ export class unit extends cc.Component {
 
     //装填时，更新装填时间
     updateAttackTime(dt){
-        if(this.currentStatus !== false) return;
+        if(this.currentStatus !== unitConstants.statusNotAttack) return;
         this.currentTimeSinceAttack += dt;
         if(this.currentTimeSinceAttack > this.attackTime) {
             this.currentTimeSinceAttack = 0;
-            this.currentStatus = true;
+            this.currentStatus = unitConstants.statusCanAttack;
         }
     }
 
-    //控制更新生命，攻击时间条，经验条在士兵子类里更新
+    //控制更新生命，攻击时间条， 经验条，等级显示
     updateHealthBar(){
         let bar = this.node.getChildByName('healthBar');
         let healthRatio = this.currentHealth / this.maxHealth;
@@ -158,10 +181,11 @@ export class unit extends cc.Component {
         barShow.progress = healthRatio;
     }
 
+    //更新攻击时间条
     updateAttackBar(){
         let bar = this.node.getChildByName('attackBar');
         let attackRatio;
-        if(this.currentStatus === true) {
+        if(this.currentStatus === unitConstants.statusCanAttack) {
             //目前可以攻击
             attackRatio = 1;
         }
@@ -172,14 +196,23 @@ export class unit extends cc.Component {
         barShow.progress = attackRatio;
     }
 
-    update(dt) {
-        this.updateDeath();
-        this.updateHealth(dt);
-        this.updateLevel();
-        this.updatePlace(dt);
-        this.updateAttackTime(dt);
-        this.updateAttackBar();
-        this.updateHealthBar();
+    //更新经验条
+    updateExpBar(){
+        let bar = this.node.getChildByName('expBar');
+        let expRatio;
+        if(this.currentLevel === this.maxLevel) {
+            expRatio = 1;
+        }
+        else {
+            expRatio = this.currentExp / unitConstants.expRequiredEachLevel[this.currentLevel - 1];
+        }
+        let barShow = bar.getComponent(cc.ProgressBar);
+        barShow.progress = expRatio;
+    }
+
+    //更新等级显示
+    updateLevelLabel() {
+        this.levelShow.string = 'LV.'+ this.currentLevel;
     }
 
     //更新的辅助函数

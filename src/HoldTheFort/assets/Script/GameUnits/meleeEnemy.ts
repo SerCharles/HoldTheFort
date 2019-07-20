@@ -16,13 +16,22 @@ export class meleeEnemy extends melee {
     constructor() {
         super();
         //敌军，不能升级，可以移动，有击杀奖励
-        this.faction = false;
+        this.faction = unitConstants.factionEnemy;
         this.maxLevel = 1;
         this.currentLevel = 1;
         this.maxSpeed = unitConstants.speedUnit;
         this.currentSpeed = this.maxSpeed;
         this.killGetMoney = unitConstants.killGainMoneyMelee;
         this.killGetScore = unitConstants.killGainScoreMelee;
+        this.killGetExp = unitConstants.killGainExpMelee;
+    }
+
+    //敌人，没有经验条和等级显示，因此把这两个函数覆盖为空
+    updateExpBar() {
+
+    }
+    updateLevelLabel() {
+
     }
     
 }

@@ -22,7 +22,7 @@ export class melee extends unit{
         this.maxAttack = unitConstants.attackMeleeEachLevel[0];
         this.maxDefense = unitConstants.defenseMeleeEachLevel[0];
         this.maxHealthRestoration = unitConstants.healthRestorationEachLevel[0];
-        this.type = 0;
+        this.type = unitConstants.typeMelee;
         this.attackRange = unitConstants.attackRangeMelee;
         this.attackTime = unitConstants.attackTimeMelee;
 

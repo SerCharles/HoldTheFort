@@ -7,6 +7,8 @@
 
 const {ccclass, property} = cc._decorator;
 
+import {globalModule} from '../constants'
+
 @ccclass
 export class gold extends cc.Component {
 
@@ -42,6 +44,9 @@ export class gold extends cc.Component {
 
     //更新钱不透明度，到达一定时间就消失
     update(dt) {
+        //暂停
+        if(globalModule.globalClass.whetherPlayGame === false) return;
+
         this.currentTime += dt;
         if(this.currentTime >= this.maxTime) {
             this.node.destroy();
@@ -53,9 +58,23 @@ export class gold extends cc.Component {
     //接收钱
     onTouch() {
         //游戏主界面直接接收
-        let mainGame = this.node.parent.getComponent('mainGame');
-        mainGame.gainGold(this.moneyNumber);
-        cc.audioEngine.playEffect(this.getMoneyAudio, false);
+
+
+
+        //暂停
+        if(globalModule.globalClass.whetherPlayGame === false) return;
+
+        
+        let game = null;
+        game = this.node.parent.getComponent('mainGame');
+        if(game === null) {
+            game = this.node.parent.getComponent('artillaryGame'); 
+        }
+        game.gainGold(this.moneyNumber);
+
+        if(globalModule.globalClass.whetherHasSound === true) {
+            cc.audioEngine.playEffect(this.getMoneyAudio, false);
+        }
         this.node.destroy();
     }
 
