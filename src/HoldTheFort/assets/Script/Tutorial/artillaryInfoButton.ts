@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export class standardInfoButton extends cc.Component {
+export class artillaryInfoButton extends cc.Component {
 
     onLoad() {
         //绑定点击事件

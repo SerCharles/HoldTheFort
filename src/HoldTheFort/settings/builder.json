@@ -39,8 +39,8 @@
   "title": "HoldTheFort",
   "webOrientation": "auto",
   "wechatgame": {
-    "REMOTE_SERVER_ROOT": "http://62.234.128.178:8000/",
-    "appid": "wx9423db557f80dd1b",
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6d8c8518d5490453",
     "orientation": "landscapeRight",
     "separate_engine": false,
     "subContext": ""

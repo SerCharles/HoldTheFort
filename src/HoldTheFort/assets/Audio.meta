@@ -1,7 +1,7 @@
 {
   "ver": "1.0.1",
   "uuid": "3309744f-f185-40bf-a4a3-d8ce6caa475b",
-  "isSubpackage": false,
-  "subpackageName": "",
+  "isSubpackage": true,
+  "subpackageName": "music",
   "subMetas": {}
 }

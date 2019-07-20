@@ -5,7 +5,7 @@
 时间：7/16/2019
 */
 
-import {gameConstants, unitConstants, getCurrentGridPoint, getCurrentGridObject, getDistance, calculateDamage, getWorldPosition} from  './constants';
+import {gameConstants, unitConstants, getCurrentGridPoint, getCurrentGridObject, getDistance, calculateDamage, getWorldPosition} from  '../constants';
 
 
 

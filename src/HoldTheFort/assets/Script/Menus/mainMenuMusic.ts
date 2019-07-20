@@ -8,7 +8,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export class mainMenuButton extends cc.Component {
+export class mainMenuMusic extends cc.Component {
 
     @property(cc.AudioClip)
     backgroundMusic: cc.AudioClip = null;
