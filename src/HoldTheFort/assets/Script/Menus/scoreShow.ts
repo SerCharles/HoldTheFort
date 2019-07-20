@@ -18,6 +18,9 @@ export class scoreShow extends cc.Component {
     onLoad() {
         let theLabel = this.node.getChildByName('scoreShow');
         let labelShow = theLabel.getComponent(cc.Label);
+        
+        //停止bgm
+        cc.audioEngine.stopAll();
 
         let score = 0;
         if(globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
