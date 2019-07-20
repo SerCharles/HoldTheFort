@@ -289,6 +289,11 @@ export class artillaryGame extends mainGame {
     onShellExplode(position, attack, range, origin) {
         if(this.soldierList !== null) {
             for(let i = 0; i < this.soldierList.length; i ++) {
+
+                if(this.soldierList[i].valid === false || this.soldierList[i].node === null) {
+                    continue;
+                }
+
                 let distance = getDistance(position, this.soldierList[i].node.position);
                 if( distance < range) {
                     //造成伤害按照距离线性衰减
@@ -300,6 +305,11 @@ export class artillaryGame extends mainGame {
 
         if(this.enemyList !== null) {
             for(let i = 0; i < this.enemyList.length; i ++) {
+
+                if(this.enemyList[i].valid === false || this.enemyList[i].node === null) {
+                    continue;
+                }
+
                 let distance = getDistance(position, this.enemyList[i].node.position);
                 if( distance < range) {
                     //造成伤害按照距离线性衰减

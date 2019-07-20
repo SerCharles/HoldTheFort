@@ -517,6 +517,8 @@ export class mainGame extends cc.Component {
     //更新某个士兵的状态
     updateStatusSingleUnit(oneUnit:unit) {
 
+        if(oneUnit.valid === false || oneUnit.node === null) return;
+
         if(oneUnit.type === unitConstants.typeSelfBomb) {
             //自爆兵的逻辑和普通士兵不太一样，需要单写一个函数处理
             this.updateStatusSelfBomber(oneUnit);
@@ -541,6 +543,11 @@ export class mainGame extends cc.Component {
         let AttackTarget = null;
         if(oneUnit.faction === true) {
             for(let i = 0; i < this.enemyList.length; i ++) {
+
+                if(this.enemyList[i].valid === false || this.enemyList[i].node === null) {
+                    continue;
+                }
+
                 let newPosition = this.enemyList[i].node.position;
                 let distance = getDistance(position, newPosition);
                 if(distance <= oneUnit.attackRange) {
@@ -553,6 +560,11 @@ export class mainGame extends cc.Component {
         //敌方进攻
         else {
             for(let i = 0; i < this.soldierList.length; i ++) {
+
+                if(this.soldierList[i].valid === false || this.soldierList[i].node === null) {
+                    continue;
+                }
+
                 let newPosition = this.soldierList[i].node.position;
                 let distance = getDistance(position, newPosition);
                 if(distance <= oneUnit.attackRange) {
@@ -651,9 +663,15 @@ export class mainGame extends cc.Component {
 
     //更新一个子弹的状态
     updateStatusSingleAmmo(oneAmmo:ammo){
+        if(oneAmmo.valid === false || oneAmmo.node === false) return;
         //我军子弹
         if(oneAmmo.faction === true) {
             for(let i = 0; i < this.enemyList.length; i ++) {
+
+                if(this.enemyList[i].valid === false || this.enemyList[i].node === null) {
+                    continue;
+                }
+
                 let distance = getDistance(oneAmmo.node.position, this.enemyList[i].node.position);
                 if(distance < unitConstants.ammoHitRange) {
                     oneAmmo.valid = false;
@@ -665,6 +683,11 @@ export class mainGame extends cc.Component {
         //敌军子弹
         else {
             for(let i = 0; i < this.soldierList.length; i ++) {
+
+                if(this.soldierList[i].valid === false || this.soldierList[i].node === null) {
+                    continue;
+                }
+
                 let distance = getDistance(oneAmmo.node.position, this.soldierList[i].node.position);
                 if(distance < unitConstants.ammoHitRange) {
                     oneAmmo.valid = false;
@@ -1065,6 +1088,11 @@ export class mainGame extends cc.Component {
     onShellExplode(position, attack, range, origin) {
         if(this.soldierList !== null) {
             for(let i = 0; i < this.soldierList.length; i ++) {
+
+                if(this.soldierList[i].valid === false || this.soldierList[i].node === null) {
+                    continue;
+                }
+
                 let distance = getDistance(position, this.soldierList[i].node.position);
                 if( distance < range) {
                     //造成伤害按照距离线性衰减
@@ -1076,6 +1104,11 @@ export class mainGame extends cc.Component {
 
         if(this.enemyList !== null) {
             for(let i = 0; i < this.enemyList.length; i ++) {
+
+                if(this.enemyList[i].valid === false || this.enemyList[i].node === null) {
+                    continue;
+                }
+
                 let distance = getDistance(position, this.enemyList[i].node.position);
                 if( distance < range) {
                     //造成伤害按照距离线性衰减
@@ -1107,6 +1140,8 @@ export class mainGame extends cc.Component {
 
     //按照兵种来执行攻击，以及播放音效
     attack(attacker, target) {
+        if(attacker.valid === false || target.valid === false || attacker.node === null || target.node === null)
+
         attacker.currentExp += attacker.attackGetExp;
         if(attacker.type === unitConstants.typeMelee) {
             //melee
@@ -1157,6 +1192,11 @@ export class mainGame extends cc.Component {
         //没有兵才可以放
         if(this.soldierList !== null) {
             for(let i = 0; i < this.soldierList.length; i ++) {
+
+                if(this.soldierList[i].valid === false || this.soldierList[i].node === null) {
+                    continue;
+                }
+
                 let unitCenter = this.soldierList[i].node.position;
                 let unitSize = this.soldierList[i].node.getContentSize();
                 if(judgeUnitInGrid(unitCenter, unitSize, gridCenter, gridSize) === true) {
@@ -1247,6 +1287,11 @@ export class mainGame extends cc.Component {
         let minDistance = gameConstants.maxNumber;
         let nearestSoldier = null;
         for(let i = 0; i < this.soldierList.length; i ++) {
+            
+            if(this.soldierList[i].valid === false || this.soldierList[i].node === null) {
+                    continue;
+                }
+
             let distance = getDistance(position, this.soldierList[i].node.position);
             if(distance < minDistance) {
                 minDistance = distance;
