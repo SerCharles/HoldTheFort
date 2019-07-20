@@ -24,18 +24,27 @@ export class pauseButton extends cc.Component {
 
     onClick() {
         let button = this.node.getComponent(cc.Button);
-        console.log(1);
+        let game = null;
+        game = this.node.parent.getComponent('mainGame');
+        if(game === null) {
+            game = this.node.parent.getComponent('artillaryGame');
+        }
+        
         if(globalModule.globalClass.whetherPlayGame === true) {
             globalModule.globalClass.whetherPlayGame = false;
             button.normalSprite = this.resumePicture;
             button.pressedSprite = this.resumePicture;
             button.hoverSprite = this.resumePicture;
+
+            cc.audioEngine.stopAll();
         }
         else {
             globalModule.globalClass.whetherPlayGame = true;
             button.normalSprite = this.pausePicture;
             button.pressedSprite = this.pausePicture;
             button.hoverSprite = this.pausePicture;
+
+            cc.audioEngine.playMusic(game.backgroundMusic, true);
         }
     }
     

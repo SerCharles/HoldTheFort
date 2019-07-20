@@ -7,6 +7,8 @@
 
 const {ccclass, property} = cc._decorator;
 
+import {gameConstants, globalModule} from '../constants'
+
 @ccclass
 export class standardGameButton extends cc.Component {
 
@@ -14,7 +16,8 @@ export class standardGameButton extends cc.Component {
         //let button = this.node.getComponent(cc.Button);
         //绑定点击事件
         this.node.on('click',function(event){
-            cc.director.loadScene("mainGame");
+            globalModule.globalClass.gameType = gameConstants.gameTypeStandard;
+            cc.director.loadScene("loadScene");
         },this);
     }
     

@@ -126,6 +126,9 @@ export class mainGame extends cc.Component {
     @property(cc.AudioClip)
     shellExplodeAudio:cc.AudioClip = null;
 
+    @property(cc.AudioClip)
+    backgroundMusic:cc.AudioClip = null;
+
     //控制当前金币和分数的显示
     //显示金币和分数
     @property(cc.Label)
@@ -195,6 +198,9 @@ export class mainGame extends cc.Component {
 
 //初始化函数集，以下的函数用于初始化，分别初始化数组和地形，初始单位，监听事件等
     onLoad () {
+        //开始bgm
+        cc.audioEngine.playMusic(this.backgroundMusic, true);
+
         //初始化游戏数组，终止位置，初始金币，失败倒计时等常量
         this.onLoadGameInfo();
         
@@ -452,7 +458,13 @@ export class mainGame extends cc.Component {
             
             //游戏结束
             if(this.countDownBeforeEnd <= 0) {
-                globalModule.globalClass.score = this.scoreNumber;
+                if(globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
+                    globalModule.globalClass.scoreStandard = this.scoreNumber;
+                }
+                else {
+                    globalModule.globalClass.scoreArtillery = this.scoreNumber;
+                }
+
                 this.countDownBeforeEnd = 0;
                 cc.director.loadScene("finishScene");
                 return;
@@ -776,9 +788,6 @@ export class mainGame extends cc.Component {
         newSoldierComponent.changeDirection(place);
         this.soldierList.push(newSoldierComponent);
 
-        if(globalModule.globalClass.whetherHasSound === true) {
-            cc.audioEngine.playEffect(this.spawnSoldierAudio, false);
-        }
     }
 
     //在对应位置放置我军远程士兵
@@ -790,9 +799,6 @@ export class mainGame extends cc.Component {
         newSoldierComponent.changeDirection(place);
         this.soldierList.push(newSoldierComponent);
 
-        if(globalModule.globalClass.whetherHasSound === true) {
-            cc.audioEngine.playEffect(this.spawnSoldierAudio, false);
-        }
     }
 
     //在对应位置放置我军炮兵
@@ -804,9 +810,6 @@ export class mainGame extends cc.Component {
         newSoldierComponent.changeDirection(place);
         this.soldierList.push(newSoldierComponent);
 
-        if(globalModule.globalClass.whetherHasSound === true) {
-            cc.audioEngine.playEffect(this.spawnSoldierAudio, false);
-        }
     }
 
     //在对应位置放置敌人近战士兵

@@ -56,6 +56,10 @@ export class artillaryGame extends mainGame {
     //初始化函数
     //区别：需要初始化四门炮的信息，但是不需要监听分数和金钱增加的事件，而且需要重写初始化开始就有的单位，排除四门炮的影响
     onLoad() {
+        //bgm
+        cc.audioEngine.playMusic(this.backgroundMusic, true);
+
+
         //初始化玩家的四门炮
         this.onLoadPlayer();
 

@@ -5,12 +5,12 @@
 时间：7/17/2019
 */
 
-import {globalModule} from '../constants'
+import {globalModule, gameConstants} from '../constants'
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export class leaderboardButton extends cc.Component {
+export class finishGameButton extends cc.Component {
 
     onLoad() {
         //绑定点击事件
@@ -20,7 +20,14 @@ export class leaderboardButton extends cc.Component {
             if(game === null) {
                 game = this.node.parent.getComponent('artillaryGame');
             }
-            globalModule.globalClass.score = game.scoreNumber;
+
+            if(globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
+                    globalModule.globalClass.scoreStandard = game.scoreNumber;
+            }
+            else {
+                globalModule.globalClass.scoreArtillery = game.scoreNumber;
+            }
+
             cc.director.loadScene("finishScene");
         },this);
     }

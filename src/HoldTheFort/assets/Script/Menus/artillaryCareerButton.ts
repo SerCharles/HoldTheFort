@@ -7,13 +7,16 @@
 
 const {ccclass, property} = cc._decorator;
 
+import {gameConstants, globalModule} from '../constants'
+
 @ccclass
 export default class artillaryCareerButton extends cc.Component {
 
     onLoad() {
         //绑定点击事件
         this.node.on('click',function(event){
-            cc.director.loadScene("artillaryGame");
+            globalModule.globalClass.gameType = gameConstants.gameTypeArtillary;
+            cc.director.loadScene("loadScene");
         },this);
     }
     

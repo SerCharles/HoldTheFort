@@ -24,12 +24,12 @@
     "default"
   ],
   "last-module-event-record-time": 1563350538363,
-  "simulator-orientation": false,
+  "simulator-orientation": true,
   "simulator-resolution": {
-    "height": 640,
-    "width": 960
+    "height": 720,
+    "width": 1280
   },
-  "start-scene": "current",
-  "use-customize-simulator": false,
-  "use-project-simulator-setting": false
+  "start-scene": "2f333388-3152-4279-b2ad-1d6a22e99e91",
+  "use-customize-simulator": true,
+  "use-project-simulator-setting": true
 }

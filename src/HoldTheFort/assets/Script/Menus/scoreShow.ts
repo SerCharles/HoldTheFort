@@ -7,7 +7,7 @@
 
 const {ccclass, property} = cc._decorator;
 
-import {globalModule} from '../constants';
+import {globalModule, gameConstants} from '../constants';
 
 import {uploadScore} from '../serverQuery'
 
@@ -18,9 +18,17 @@ export class scoreShow extends cc.Component {
     onLoad() {
         let theLabel = this.node.getChildByName('scoreShow');
         let labelShow = theLabel.getComponent(cc.Label);
-        
-        labelShow.string = 'Your Score: ' + globalModule.globalClass.score;
-        uploadScore(globalModule.globalClass.score);
+
+        let score = 0;
+        if(globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
+            score = globalModule.globalClass.scoreStandard;
+        }
+        else {
+            score = globalModule.globalClass.scoreArtillery;
+        }
+        labelShow.string = 'Your Score: ' + score;
+
+        uploadScore(score, globalModule.globalClass.gameType);
     }
 
 

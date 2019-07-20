@@ -74,9 +74,9 @@ const unitConstants = {
 
 
     //单位的造价，击杀获得的分数，经验，金币等
-    costRanged: 50,
-    costMelee: 50,
-    costMortar: 200,
+    costRanged: 20,
+    costMelee: 20,
+    costMortar: 70,
 
     killGainScoreRanged:10,
     killGainScoreMelee:10,
@@ -127,7 +127,7 @@ const gameConstants = {
     gridNumY: 10,
 
     //开始信息
-    startGold: 1000,
+    startGold: 100,
 
     //随机生成敌人的控制信息
     minNextSoldierTime: 8,
@@ -148,7 +148,7 @@ const gameConstants = {
     generateRangedY: [-50, 50],
 
     //敌人占领广场的最大时间
-    enemyHoldSquareMaxTime: 30,
+    enemyHoldSquareMaxTime: 10,
     
     //广场范围
     squareRange: 40,
@@ -160,6 +160,13 @@ const gameConstants = {
     //正无穷
     maxNumber: 114514,
 
+    //游戏类型
+    gameTypeStandard: true,
+    gameTypeArtillary: false,
+
+    //进度条加载总时间
+    loadingTimeTotal: 3
+
 };
 
 //关于网络连接的常量
@@ -169,6 +176,7 @@ const netWorkConstants = {
     password: '24dZe,N^~`RKw',
     url: '/score',
     completeUrl: '62.234.128.178:8000/score',
+    timeOut: 2000,
 } 
 
 //记录城堡格子的网格坐标
@@ -298,12 +306,18 @@ function gridPlaceToShowPlace(gridPlace) {
 //定义一个全局模块globalModule，全局类globalClass，用于跨场景传参
 module globalModule {
   export class globalClass {
-    static score : number = 0;
-    static historyMaxScore : number = 0;
+    static scoreStandard : number = 0;
+    static scoreArtillery : number = 0;
+    static historyMaxScoreStandard : number = 0;
+    static historyMaxScoreArtillery : number = 0;
+
 
     //控制游戏是否暂停,音效是否播放
     static whetherPlayGame: boolean = true;
     static whetherHasSound: boolean = true;
+
+    //控制游戏类型
+    static gameType: boolean = true;
   }
 }
 

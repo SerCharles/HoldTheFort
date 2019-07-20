@@ -7,7 +7,7 @@
 
 const {ccclass, property} = cc._decorator;
 
-import {globalModule} from '../constants';
+import {globalModule, gameConstants} from '../constants';
 import {getHistoryBest} from '../serverQuery'
 
 @ccclass
@@ -16,14 +16,29 @@ export class historyShow extends cc.Component {
     onLoad() {
         let theLabel = this.node.getChildByName('scoreShow');
         let labelShow = theLabel.getComponent(cc.Label);
-        getHistoryBest();
-        labelShow.string = 'History Record: ' + globalModule.globalClass.historyMaxScore;
+
+        let score = 0;
+        if(globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
+            score = globalModule.globalClass.scoreStandard;
+        }
+        else {
+            score = globalModule.globalClass.scoreArtillery;
+        }
+        labelShow.string = 'History Record: ' + score;
     }
     
     update(dt) {
         let theLabel = this.node.getChildByName('scoreShow');
         let labelShow = theLabel.getComponent(cc.Label);
-        labelShow.string = 'History Record: ' + globalModule.globalClass.historyMaxScore;
+
+        let score = 0;
+        if(globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
+            score = globalModule.globalClass.scoreStandard;
+        }
+        else {
+            score = globalModule.globalClass.scoreArtillery;
+        }
+        labelShow.string = 'History Record: ' + score;
     }
 }
 

@@ -24,19 +24,29 @@ export class soundButton extends cc.Component {
     }
 
     onClick() {
-        console.log(1);
+        let game = null;
+        game = this.node.parent.getComponent('mainGame');
+        if(game === null) {
+            game = this.node.parent.getComponent('artillaryGame');
+        }
+
+
         let button = this.node.getComponent(cc.Button);
         if(globalModule.globalClass.whetherHasSound === true) {
             globalModule.globalClass.whetherHasSound = false;
             button.normalSprite = this.stopPicture;
             button.pressedSprite = this.stopPicture;
             button.hoverSprite = this.stopPicture;
+            
+            cc.audioEngine.stopAll();
         }
         else {
             globalModule.globalClass.whetherHasSound = true;
             button.normalSprite = this.playPicture;
             button.pressedSprite = this.playPicture;
             button.hoverSprite = this.playPicture;
+
+            cc.audioEngine.playMusic(game.backgroundMusic, true);
         }
     }
     
