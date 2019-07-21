@@ -5,12 +5,13 @@
 时间：7/20/2019
 */
 
-const {ccclass, property} = cc._decorator;
-import {globalModule} from '../constants';
+const { ccclass, property } = cc._decorator;
+import { globalModule } from '../constants';
 
 @ccclass
 export class pauseButton extends cc.Component {
 
+    public
     @property(cc.SpriteFrame)
     pausePicture: cc.SpriteFrame = null;
 
@@ -18,7 +19,7 @@ export class pauseButton extends cc.Component {
     resumePicture: cc.SpriteFrame = null;
 
     onLoad() {
-        //绑定点击事件
+        // 绑定点击事件
         this.node.on('click', this.onClick, this);
     }
 
@@ -26,11 +27,11 @@ export class pauseButton extends cc.Component {
         let button = this.node.getComponent(cc.Button);
         let game = null;
         game = this.node.parent.getComponent('mainGame');
-        if(game === null) {
+        if (game === null) {
             game = this.node.parent.getComponent('artillaryGame');
         }
-        
-        if(globalModule.globalClass.whetherPlayGame === true) {
+
+        if (globalModule.globalClass.whetherPlayGame === true) {
             globalModule.globalClass.whetherPlayGame = false;
             button.normalSprite = this.resumePicture;
             button.pressedSprite = this.resumePicture;
@@ -47,5 +48,5 @@ export class pauseButton extends cc.Component {
             cc.audioEngine.playMusic(game.backgroundMusic, true);
         }
     }
-    
+
 }

@@ -5,19 +5,20 @@
 时间：7/19/2019
 */
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
-import {unit} from './unit';
-import {gameConstants, unitConstants} from  '../constants';
+import { unit } from './unit';
+import { gameConstants, unitConstants } from  '../constants';
 
 
 @ccclass
-export class mortar extends unit{
+export class mortar extends unit {
 
-    constructor(){
+    public
+    constructor() {
         super();
 
-        //最大值初始化
+        // 最大值初始化
         this.maxHealth = unitConstants.healthMortarEachLevel[0];
         this.maxAttack = unitConstants.attackMortarEachLevel[0];
         this.maxDefense = unitConstants.defenseMortarEachLevel[0];
@@ -25,9 +26,9 @@ export class mortar extends unit{
         this.type = unitConstants.typeMortar;
         this.attackRange = unitConstants.attackRangeMortar;
         this.attackTime = unitConstants.attackTimeMortar;
-        
 
-        //当前值初始化
+
+        // 当前值初始化
         this.currentLevel = 1;
         this.currentAttack = this.maxAttack;
         this.currentHealth = this.maxHealth;
@@ -35,15 +36,15 @@ export class mortar extends unit{
         this.currentHealthRestoration = this.maxHealthRestoration;
     }
 
-    upgrade(){
+    upgrade() {
         super.upgrade();
 
-        //计算当前值/最大值，保持该比例在升级前后不变
-        let portionHealth:number = this.currentHealth / this.maxHealth;
-        let portionAttack:number = this.currentAttack / this.maxAttack;
-        let portionDefense:number = this.currentDefense / this.maxDefense;
+        // 计算当前值/最大值，保持该比例在升级前后不变
+        let portionHealth: number = this.currentHealth / this.maxHealth;
+        let portionAttack: number = this.currentAttack / this.maxAttack;
+        let portionDefense: number = this.currentDefense / this.maxDefense;
 
-        //修改最大值
+        // 修改最大值
         this.maxHealth = unitConstants.healthMeleeEachLevel[this.currentLevel - 1];
         this.maxAttack = unitConstants.attackMeleeEachLevel[this.currentLevel - 1];
         this.maxDefense = unitConstants.defenseMeleeEachLevel[this.currentLevel - 1];
@@ -58,5 +59,5 @@ export class mortar extends unit{
         super.update(dt);
     }
 
-    
+
 }

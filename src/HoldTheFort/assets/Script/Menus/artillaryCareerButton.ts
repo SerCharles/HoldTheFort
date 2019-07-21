@@ -5,19 +5,19 @@
 时间：7/17/2019
 */
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
-import {gameConstants, globalModule} from '../constants'
+import { gameConstants, globalModule } from '../constants';
 
 @ccclass
 export default class artillaryCareerButton extends cc.Component {
-
+    public
     onLoad() {
-        //绑定点击事件
-        this.node.on('click',function(event){
+        // 绑定点击事件
+        this.node.on('click', function(event) {
             globalModule.globalClass.gameType = gameConstants.gameTypeArtillary;
-            cc.director.loadScene("loadScene");
-        },this);
+            cc.director.loadScene('loadScene');
+        }, this);
     }
-    
+
 }

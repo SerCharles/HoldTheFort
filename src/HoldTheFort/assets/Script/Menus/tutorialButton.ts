@@ -5,16 +5,17 @@
 时间：7/17/2019
 */
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export class tutorialButton extends cc.Component {
 
+    public
     onLoad() {
-        //绑定点击事件
-        this.node.on('click',function(event){
-            cc.director.loadScene("tutorial");
-        },this);
+        // 绑定点击事件
+        this.node.on('click', function(event) {
+            cc.director.loadScene('tutorial');
+        }, this);
     }
-    
+
 }

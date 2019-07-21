@@ -1,0 +1,8 @@
+startLoadScene:进入游戏前的加载
+openScene:游戏主菜单
+loadingScene:加载界面
+standardGame:标准模式游戏界面
+artilleryGame：炮兵模式游戏界面
+finishScene：结算界面
+gameInfo:游戏信息菜单
+gameInfoContent:具体的游戏信息显示界面，一共有四个，大同小异，都是文字截图+图片辅助

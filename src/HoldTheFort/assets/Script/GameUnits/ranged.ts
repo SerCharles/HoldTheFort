@@ -5,19 +5,21 @@
 时间：7/13/2019
 */
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
-import {unit} from './unit';
-import {gameConstants, unitConstants} from  '../constants';
+import { unit } from './unit';
+import { gameConstants, unitConstants } from  '../constants';
 
 
 @ccclass
 export class ranged extends unit {
 
-    constructor(){
+    public
+
+    constructor() {
         super();
 
-        //最大值和静态属性初始化
+        // 最大值和静态属性初始化
         this.maxHealth = unitConstants.healthRangedEachLevel[0];
         this.maxAttack = unitConstants.attackRangedEachLevel[0];
         this.maxDefense = unitConstants.defenseRangedEachLevel[0];
@@ -27,7 +29,7 @@ export class ranged extends unit {
         this.attackTime = unitConstants.attackTimeRanged;
 
 
-        //当前值初始化
+        // 当前值初始化
         this.currentLevel = 1;
         this.currentAttack = this.maxAttack;
         this.currentHealth = this.maxHealth;
@@ -37,15 +39,15 @@ export class ranged extends unit {
     }
 
 
-    upgrade(){
+    upgrade() {
         super.upgrade();
 
-        //计算当前值/最大值，保持该比例在升级前后不变
-        let portionHealth:number = this.currentHealth / this.maxHealth;
-        let portionAttack:number = this.currentAttack / this.maxAttack;
-        let portionDefense:number = this.currentDefense / this.maxDefense;
+        // 计算当前值/最大值，保持该比例在升级前后不变
+        let portionHealth: number = this.currentHealth / this.maxHealth;
+        let portionAttack: number = this.currentAttack / this.maxAttack;
+        let portionDefense: number = this.currentDefense / this.maxDefense;
 
-        //修改最大值
+        // 修改最大值
         this.maxHealth = unitConstants.healthRangedEachLevel[this.currentLevel - 1];
         this.maxAttack = unitConstants.attackRangedEachLevel[this.currentLevel - 1];
         this.maxDefense = unitConstants.defenseRangedEachLevel[this.currentLevel - 1];

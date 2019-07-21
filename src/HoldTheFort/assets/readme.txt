@@ -1,0 +1,9 @@
+文件结构：
+Animation:动画
+Audio:音效
+BGM：音乐
+Map:地图相关
+Prefabs:预先加载的模块
+texture：图片
+scene：场景
+script：代码

@@ -6,17 +6,20 @@
 */
 
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
-import {unit} from './unit';
-import {mortar} from './mortar'
-import {gameConstants, unitConstants} from  '../constants';
+import { unit } from './unit';
+import { mortar } from './mortar';
+import { gameConstants, unitConstants } from  '../constants';
 
 @ccclass
 export class mortarSoldier extends mortar {
+
+    public
+
     constructor() {
         super();
-        //我军，可以升级，不能移动，有造价
+        // 我军，可以升级，不能移动，有造价
         this.faction = unitConstants.factionSoldier;
         this.maxLevel = unitConstants.maxLevel;
         this.maxSpeed = 0;
@@ -26,7 +29,7 @@ export class mortarSoldier extends mortar {
 
     }
 
-    onLoad(){
+    onLoad() {
         this.changeDirection(this.node.position);
     }
 

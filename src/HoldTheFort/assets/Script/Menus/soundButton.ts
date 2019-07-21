@@ -5,12 +5,13 @@
 时间：7/20/2019
 */
 
-const {ccclass, property} = cc._decorator;
-import {globalModule} from '../constants';
+const { ccclass, property } = cc._decorator;
+import { globalModule } from '../constants';
 
 @ccclass
 export class soundButton extends cc.Component {
 
+    public
     @property(cc.SpriteFrame)
     playPicture: cc.SpriteFrame = null;
 
@@ -18,7 +19,7 @@ export class soundButton extends cc.Component {
     stopPicture: cc.SpriteFrame = null;
 
     onLoad() {
-        //绑定点击事件
+        // 绑定点击事件
         this.node.on('click', this.onClick, this);
 
     }
@@ -26,18 +27,18 @@ export class soundButton extends cc.Component {
     onClick() {
         let game = null;
         game = this.node.parent.getComponent('mainGame');
-        if(game === null) {
+        if (game === null) {
             game = this.node.parent.getComponent('artillaryGame');
         }
 
 
         let button = this.node.getComponent(cc.Button);
-        if(globalModule.globalClass.whetherHasSound === true) {
+        if (globalModule.globalClass.whetherHasSound === true) {
             globalModule.globalClass.whetherHasSound = false;
             button.normalSprite = this.stopPicture;
             button.pressedSprite = this.stopPicture;
             button.hoverSprite = this.stopPicture;
-            
+
             cc.audioEngine.stopAll();
         }
         else {
@@ -49,5 +50,5 @@ export class soundButton extends cc.Component {
             cc.audioEngine.playMusic(game.backgroundMusic, true);
         }
     }
-    
+
 }

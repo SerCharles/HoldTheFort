@@ -339,7 +339,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "maxHealth": 350,
+    "maxHealth": 150,
     "maxAttack": 300,
     "maxDefense": 35,
     "maxSpeed": 30,

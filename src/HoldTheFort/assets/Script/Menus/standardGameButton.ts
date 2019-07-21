@@ -5,20 +5,21 @@
 时间：7/17/2019
 */
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
-import {gameConstants, globalModule} from '../constants'
+import { gameConstants, globalModule } from '../constants';
 
 @ccclass
 export class standardGameButton extends cc.Component {
 
+    public
     onLoad() {
-        //let button = this.node.getComponent(cc.Button);
-        //绑定点击事件
-        this.node.on('click',function(event){
+        // let button = this.node.getComponent(cc.Button);
+        // 绑定点击事件
+        this.node.on('click', function(event) {
             globalModule.globalClass.gameType = gameConstants.gameTypeStandard;
-            cc.director.loadScene("loadScene");
-        },this);
+            cc.director.loadScene('loadScene');
+        }, this);
     }
-    
+
 }

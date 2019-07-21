@@ -5,41 +5,41 @@
 时间：7/17/2019
 */
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
-import {globalModule, gameConstants} from '../constants';
-import {getHistoryBest} from '../serverQuery'
+import { globalModule, gameConstants } from '../constants';
+import { getHistoryBest } from '../serverQuery';
 
 @ccclass
 export class historyShow extends cc.Component {
-
+    public
     onLoad() {
 
         let theLabel = this.node.getChildByName('scoreShow');
         let labelShow = theLabel.getComponent(cc.Label);
 
         let score = 0;
-        if(globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
-            score = globalModule.globalClass.scoreStandard;
+        if (globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
+            score = globalModule.globalClass.historyMaxScoreStandard;
         }
         else {
-            score = globalModule.globalClass.scoreArtillery;
+            score = globalModule.globalClass.historyMaxScoreArtillery;
         }
-        labelShow.string = 'History Record: ' + score;
+        labelShow.string = 'Global History \nRecord: ' + score;
     }
-    
+
     update(dt) {
         let theLabel = this.node.getChildByName('scoreShow');
         let labelShow = theLabel.getComponent(cc.Label);
 
         let score = 0;
-        if(globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
-            score = globalModule.globalClass.scoreStandard;
+        if (globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
+            score = globalModule.globalClass.historyMaxScoreStandard;
         }
         else {
-            score = globalModule.globalClass.scoreArtillery;
+            score = globalModule.globalClass.historyMaxScoreArtillery;
         }
-        labelShow.string = 'History Record: ' + score;
+        labelShow.string = 'Global History \nRecord: ' + score;
     }
 }
 

@@ -5,17 +5,18 @@
 时间：7/15/2019
 */
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
-import {globalModule} from '../constants'
+import { globalModule } from '../constants';
 
 @ccclass
 export class gold extends cc.Component {
 
+    public
     @property(Number)
     moneyNumber: number = 0;
 
-    //控制钱的透明度变化，超过一定时间就消失
+    // 控制钱的透明度变化，超过一定时间就消失
     @property(Number)
     currentTime: number = 0;
 
@@ -26,15 +27,15 @@ export class gold extends cc.Component {
     minOpacity: number = 50;
 
     @property(cc.AudioClip)
-    getMoneyAudio:cc.AudioClip = null;
+    getMoneyAudio: cc.AudioClip = null;
 
     onLoad() {
-        this.node.on(cc.Node.EventType.TOUCH_START,function(event){
+        this.node.on(cc.Node.EventType.TOUCH_START, function(event) {
             this.onTouch();
-        },this);
-        this.node.on(cc.Node.EventType.MOUSE_DOWN,function(event){
+        }, this);
+        this.node.on(cc.Node.EventType.MOUSE_DOWN, function(event) {
             this.onTouch();
-        },this);
+        }, this);
 
     }
 
@@ -42,42 +43,40 @@ export class gold extends cc.Component {
         this.moneyNumber = number;
     }
 
-    //更新钱不透明度，到达一定时间就消失
+    // 更新钱不透明度，到达一定时间就消失
     update(dt) {
-        //暂停
-        if(globalModule.globalClass.whetherPlayGame === false) return;
+        // 暂停
+        if (globalModule.globalClass.whetherPlayGame === false) return;
 
         this.currentTime += dt;
-        if(this.currentTime >= this.maxTime) {
+        if (this.currentTime >= this.maxTime) {
             this.node.destroy();
         }
         let currentOpacity = this.minOpacity + Math.round((255 - this.minOpacity) * (1 - this.currentTime / this.maxTime));
         this.node.opacity = currentOpacity;
     }
 
-    //接收钱
+    // 接收钱
     onTouch() {
-        //游戏主界面直接接收
+        // 游戏主界面直接接收
+
+        // 暂停
+        if (globalModule.globalClass.whetherPlayGame === false) return;
 
 
-
-        //暂停
-        if(globalModule.globalClass.whetherPlayGame === false) return;
-
-        
         let game = null;
         game = this.node.parent.getComponent('mainGame');
-        if(game === null) {
-            game = this.node.parent.getComponent('artillaryGame'); 
+        if (game === null) {
+            game = this.node.parent.getComponent('artillaryGame');
         }
         game.gainGold(this.moneyNumber);
 
-        if(globalModule.globalClass.whetherHasSound === true) {
+        if (globalModule.globalClass.whetherHasSound === true) {
             cc.audioEngine.playEffect(this.getMoneyAudio, false);
         }
         this.node.destroy();
     }
 
-    
+
 
 }

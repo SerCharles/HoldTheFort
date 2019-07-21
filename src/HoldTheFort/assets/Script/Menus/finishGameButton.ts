@@ -5,31 +5,31 @@
 时间：7/17/2019
 */
 
-import {globalModule, gameConstants} from '../constants'
+import { globalModule, gameConstants } from '../constants';
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export class finishGameButton extends cc.Component {
-
+    public
     onLoad() {
-        //绑定点击事件
-        this.node.on('click',function(event){
+        // 绑定点击事件
+        this.node.on('click', function(event) {
             let game = null;
             game = this.node.parent.getComponent('mainGame');
-            if(game === null) {
+            if (game === null) {
                 game = this.node.parent.getComponent('artillaryGame');
             }
 
-            if(globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
-                    globalModule.globalClass.scoreStandard = game.scoreNumber;
+            if (globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
+                globalModule.globalClass.scoreStandard = game.scoreNumber;
             }
             else {
                 globalModule.globalClass.scoreArtillery = game.scoreNumber;
             }
 
-            cc.director.loadScene("finishScene");
-        },this);
+            cc.director.loadScene('finishScene');
+        }, this);
     }
-    
+
 }
