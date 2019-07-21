@@ -12,7 +12,7 @@ import { getHistoryBest } from '../serverQuery';
 
 @ccclass
 export class historyShow extends cc.Component {
-    public
+    public method
     onLoad() {
 
         let theLabel = this.node.getChildByName('scoreShow');

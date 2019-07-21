@@ -30,6 +30,7 @@ export class playerShow extends cc.Component {
         this.getMyMortar();
     }
 
+    public method
     // 设置编号
     setCode() {
         if (this.node.name === 'mortarInfo0') {

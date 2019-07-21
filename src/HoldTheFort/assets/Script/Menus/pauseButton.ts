@@ -18,6 +18,7 @@ export class pauseButton extends cc.Component {
     @property(cc.SpriteFrame)
     resumePicture: cc.SpriteFrame = null;
 
+    public method
     onLoad() {
         // 绑定点击事件
         this.node.on('click', this.onClick, this);

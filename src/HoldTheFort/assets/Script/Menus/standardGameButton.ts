@@ -12,7 +12,7 @@ import { gameConstants, globalModule } from '../constants';
 @ccclass
 export class standardGameButton extends cc.Component {
 
-    public
+    public method
     onLoad() {
         // let button = this.node.getComponent(cc.Button);
         // 绑定点击事件

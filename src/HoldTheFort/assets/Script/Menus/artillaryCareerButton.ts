@@ -11,7 +11,7 @@ import { gameConstants, globalModule } from '../constants';
 
 @ccclass
 export default class artillaryCareerButton extends cc.Component {
-    public
+    public method
     onLoad() {
         // 绑定点击事件
         this.node.on('click', function(event) {

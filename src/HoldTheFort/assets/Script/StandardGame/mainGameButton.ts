@@ -22,7 +22,7 @@ export class mainGameButton extends cc.Component {
     @property(Number)
     cost: number = 0;
 
-    protected
+    public method
     onLoad() {
         // 枚举节点名称，来获取自身代表的兵种
         let theName = this.node.name;

@@ -45,6 +45,7 @@ export class selfBomber extends unit {
 
     }
 
+    public method
     updateDeath() {
         if (this.currentHealth <= 0) {
             this.valid = false;

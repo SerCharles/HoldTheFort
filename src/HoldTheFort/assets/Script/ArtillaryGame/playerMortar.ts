@@ -18,6 +18,7 @@ export class playerMortar extends mortarSoldier {
     @property(Number)
     code: number = 0;
 
+    public method
     onLoad() {
         super.onLoad();
         this.setCode();

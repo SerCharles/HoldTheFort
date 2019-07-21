@@ -14,6 +14,7 @@ export class mainMenuMusic extends cc.Component {
     @property(cc.AudioClip)
     backgroundMusic: cc.AudioClip = null;
 
+    public method
     onLoad() {
         cc.audioEngine.playMusic(this.backgroundMusic, true);
     }

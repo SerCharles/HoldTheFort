@@ -101,7 +101,8 @@ export class unit extends cc.Component {
     @property(cc.Label)
     levelShow: cc.Label = null;
 
-        // 留给游戏主界面操作的接口，用于更新单位自身的各种状态
+    public method
+    // 留给游戏主界面操作的接口，用于更新单位自身的各种状态
     // 被攻击
     beingAttack(damage: number) {
         this.currentHealth -= damage;

@@ -11,7 +11,7 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export class finishGameButton extends cc.Component {
-    public
+    public method
     onLoad() {
         // 绑定点击事件
         this.node.on('click', function(event) {

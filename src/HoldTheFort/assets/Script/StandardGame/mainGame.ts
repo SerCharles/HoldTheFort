@@ -196,7 +196,7 @@ export class mainGame extends cc.Component {
     @property(cc.Label)
     countDownShowText = null;
 
-
+    public method
     // 初始化函数集，以下的函数用于初始化，分别初始化数组和地形，初始单位，监听事件等
     onLoad() {
         // 开始bgm

@@ -14,7 +14,7 @@ import { gameConstants, unitConstants } from  '../constants';
 @ccclass
 export class melee extends unit {
 
-    public
+    public method
     constructor() {
         super();
 

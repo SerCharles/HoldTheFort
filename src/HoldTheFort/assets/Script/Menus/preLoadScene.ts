@@ -17,8 +17,16 @@ export class preLoadScene extends cc.Component {
     @property(Number)
     currentLoadTime: number = 0;
 
+    //防止重复加载报错
+    @property(Boolean)
+    whetherHasLoaded: boolean = false;
+
+    //是否完成加载包
+    //@property(Boolean)
+    //whetherLoadPackSuccess: boolean = false;
 
 
+    public method
     // 预先加载游戏
     onLoad() {
         this.currentLoadTime = 0;
@@ -27,30 +35,33 @@ export class preLoadScene extends cc.Component {
                 return console.error(err);
             }
             console.log('load subpackage successfully.');
-        });
-        cc.loader.downloader.loadSubpackage('bgm', function (err) {
-            if (err) {
-                return console.error(err);
-            }
-            console.log('load subpackage successfully.');
-        });
-        cc.loader.downloader.loadSubpackage('music', function (err) {
-            if (err) {
-                return console.error(err);
-            }
-            console.log('load subpackage successfully.');
-        });
+            cc.loader.downloader.loadSubpackage('bgm', function (err) {
+                if (err) {
+                    return console.error(err);
+                }
+                console.log('load subpackage successfully.');
+                cc.loader.downloader.loadSubpackage('music', function (err) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    console.log('load subpackage successfully.');
+                    //this.whetherLoadPackSuccess = true;
+                });
+            });
+        });    
     }
+
     // 更新进度条
     update(dt) {
         this.currentLoadTime += dt;
         let bar = this.node.getChildByName('progressBar');
         let barShow = bar.getComponent(cc.ProgressBar);
         let loadRatio = this.currentLoadTime / gameConstants.loadingTimeTotal;
-
+        
         // 100%就加载游戏
-        if (loadRatio >= 1) {
-                cc.director.loadScene('openScene');
+        if (loadRatio >= 1 && this.whetherHasLoaded === false) {
+            this.whetherHasLoaded = true;
+            cc.director.loadScene('openScene');
         }
 
         barShow.progress = loadRatio;

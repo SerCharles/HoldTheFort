@@ -29,6 +29,7 @@ export class gold extends cc.Component {
     @property(cc.AudioClip)
     getMoneyAudio: cc.AudioClip = null;
 
+    public method
     onLoad() {
         this.node.on(cc.Node.EventType.TOUCH_START, function(event) {
             this.onTouch();

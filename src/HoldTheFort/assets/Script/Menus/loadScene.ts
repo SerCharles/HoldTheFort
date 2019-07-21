@@ -17,6 +17,10 @@ export class loadScene extends cc.Component {
     @property(Number)
     currentLoadTime: number = 0;
 
+    @property(Boolean)
+    whetherHasLoaded: boolean = false;
+
+    public method
     // 预先加载游戏
     onLoad() {
         this.currentLoadTime = 0;
@@ -38,7 +42,8 @@ export class loadScene extends cc.Component {
         let loadRatio = this.currentLoadTime / gameConstants.loadingTimeTotal;
 
         // 100%就加载游戏
-        if (loadRatio >= 1) {
+        if (loadRatio >= 1 && this.whetherHasLoaded === false) {
+            this.whetherHasLoaded = true;
             if (globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
                 cc.director.loadScene('mainGame');
             }

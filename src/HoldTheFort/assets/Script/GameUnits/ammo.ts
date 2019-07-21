@@ -30,6 +30,7 @@ export class ammo extends cc.Component {
     @property(cc.Vec2)
     movingDirection: cc.Vec2 = undefined;
 
+    public method
     //一系列对外接口
     //设置移动方向
     setMovingDirection(destination: cc.Vec2) {
