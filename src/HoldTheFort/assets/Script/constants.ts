@@ -127,8 +127,8 @@ const gameConstants = {
     gridNumY: 10,
 
     // 开始信息
-    startGold: 100,
-
+    startGold: 200,
+    
     // 随机生成敌人的控制信息
     minNextSoldierTime: 8,
     maxNextSoldierTime: 16,

@@ -111,7 +111,7 @@
     "_enabled": true,
     "moneyNumber": 0,
     "currentTime": 0,
-    "maxTime": 3,
+    "maxTime": 5,
     "minOpacity": 50,
     "getMoneyAudio": {
       "__uuid__": "6968b991-1c51-4175-92ea-9fae5abf088c"
