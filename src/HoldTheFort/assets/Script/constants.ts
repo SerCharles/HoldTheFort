@@ -19,7 +19,7 @@ const unitConstants = {
     healthMortarEachLevel: [200, 240, 300],
     healthSelfBomb: 150,
     healthTower: 1000,
-    healthRestorationEachLevel: [2, 3, 5],
+    healthRestorationEachLevel: [5, 10, 20],
 
     attackRangedEachLevel: [150, 170, 200],
     attackMeleeEachLevel: [150, 170, 200],
@@ -44,8 +44,8 @@ const unitConstants = {
     // 攻击范围，代表两个单位中心的距离
     attackRangeMelee: 40,
     attackRangeRanged: 200,
-    attackRangeMortar: 600,
-    attackRangeSelfBomb: 40,
+    attackRangeMortar: 2000,
+    attackRangeSelfBomb: 41,
     attackRangeTower: 0,
 
     // 子弹，炮弹命中判定：两个中心距离小于某个值
@@ -61,22 +61,21 @@ const unitConstants = {
     attackTimeMortar: 15,
 
     // 敌人在城堡上的debuff百分比
-    // 在城堡上运动速度只是原先的10%
+    // 在城堡上运动速度只是原先的50%
     speedRatioCastle: 50,
 
-    // 近战兵在攻城时攻击力,防御力只是原来的50%
-    attackRatioCastleMelee: 50,
-    defenseRatioCastleMelee: 50,
 
 
-    // 远程兵射击城上攻击力只是原来的50%
-    attackRatioGroundRanged: 50,
-
+    // 敌人攻击力只是原来的70%
+    attackRatioGroundMelee: 0.7,
+    attackRatioGroundRanged: 0.7,
+    attackRatioGroundMortar: 0.7,
 
     // 单位的造价，击杀获得的分数，经验，金币等
-    costRanged: 15,
-    costMelee: 15,
-    costMortar: 50,
+    costRanged: 30,
+    costMelee: 30,
+    costMortar: 60,
+    costSelfBomb: 20,
 
     killGainScoreRanged: 10,
     killGainScoreMelee: 10,
@@ -128,16 +127,16 @@ const gameConstants = {
 
     // 开始信息
     startGold: 200,
-    
+
     // 随机生成敌人的控制信息
-    minNextSoldierTime: 8,
-    maxNextSoldierTime: 16,
-    minNextEnemyTimeCommon: 5,
-    maxNextEnemyTimeCommon: 10,
-    minNextEnemyTimeSpecial: 10,
-    maxNextEnemyTimeSpecial: 20,
-    minNextEnemyTimeTower: 80,
-    maxNextEnemyTimeTower: 120,
+    minNextSoldierTime: 10,
+    maxNextSoldierTime: 20,
+    minNextEnemyTimeCommon: 4,
+    maxNextEnemyTimeCommon: 6,
+    minNextEnemyTimeSpecial: 8,
+    maxNextEnemyTimeSpecial: 16,
+    minNextEnemyTimeTower: 40,
+    maxNextEnemyTimeTower: 60,
     maxEnemyAtScene: 20,
 
     // 随机生成攻城塔附带敌兵的信息
@@ -148,7 +147,7 @@ const gameConstants = {
     generateRangedY: [-50, 50],
 
     // 敌人占领广场的最大时间
-    enemyHoldSquareMaxTime: 10,
+    enemyHoldSquareMaxTime: 30,
 
     // 广场范围
     squareRange: 40,
@@ -165,7 +164,33 @@ const gameConstants = {
     gameTypeArtillary: false,
 
     // 进度条加载总时间
-    loadingTimeTotal: 3
+    loadingTimeTotal: 3,
+
+    // 时代类型
+    eraWar: 0,
+    eraHotWar: 1,
+    eraPeace: 2,
+
+    // 和平时间
+    peaceMaxTime: 20,
+
+    // 战胜一组敌人带来的得分奖励
+    winStageAddScore: 200,
+
+    // 战胜一组敌人带来的最少，最多金币数目，用于随机
+    winStageMinGold: 100,
+    winStageMaxGold: 150,
+
+
+    // 地图编号
+    // 城堡（四方），瓮城，棱堡
+    mapTypeNumber: 3,
+
+    mapCastle: 1,
+    mapBarbican: 2,
+    mapBastion: 3,
+
+
 
 };
 
@@ -175,16 +200,10 @@ const netWorkConstants = {
     username: 'ubuntu',
     password: '24dZe,N^~`RKw',
     url: '/score',
-    completeUrl: 'https://62.234.128.178:8000/score',
+    completeUrl: 'shenguanlin.xyz:8000/score',
     timeOut: 2000,
 };
 
-// 记录城堡格子的网格坐标
-const castleBlocks = {
-    castleNumber: 20,
-    castleBlocksX: [5, 5, 5, 5, 5, 5, 6, 7, 8, 9, 10, 6, 7, 8, 9, 10, 10, 10, 10, 10],
-    castleBlocksY: [2, 3, 4, 5, 6, 7, 2, 2, 2, 2, 2, 7, 7, 7, 7, 7, 3, 4, 5, 6]
-};
 
 // 判断一个点在哪个格子
 function getCurrentGridPoint(currentPlace) {
@@ -318,6 +337,9 @@ namespace globalModule {
 
         // 控制游戏类型
         static gameType: boolean = true;
+
+        // 控制游戏地图类型
+        static mapType: number = 0;
     }
 }
 
@@ -325,5 +347,4 @@ namespace globalModule {
 export {
     unitConstants, gameConstants, netWorkConstants, getCurrentGridPoint, getCurrentGridObject, getDistance, calculateDamage,
     calculateShellDamage, getWorldPosition, judgeOutOfRange, judgePointInGrid, judgeUnitInGrid, gridPlaceToShowPlace, globalModule,
-    castleBlocks
 };

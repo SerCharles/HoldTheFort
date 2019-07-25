@@ -30,7 +30,7 @@
       }
     ],
     "_active": true,
-    "_level": 2,
+    "_level": 1,
     "_components": [
       {
         "__id__": 26
@@ -52,8 +52,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 60,
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -62,8 +62,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -150,
-      "y": -90,
+      "x": 202,
+      "y": 149.9,
       "z": 0
     },
     "_scale": {
@@ -88,7 +88,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "attackBar",
+    "_name": "healthBar",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -121,8 +121,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 8
+      "width": 60,
+      "height": 5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -132,7 +132,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -28,
+      "y": -25,
       "z": 0
     },
     "_scale": {
@@ -183,7 +183,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 60,
       "height": 5
     },
     "_anchorPoint": {
@@ -193,7 +193,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -20,
+      "x": -30,
       "y": 0,
       "z": 0
     },
@@ -228,7 +228,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "8f8837a2-e5b0-4fef-957e-da1a75b174b9"
+      "__uuid__": "f7a7b3d7-eeff-47e5-9eba-1fa547ff5394"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -251,9 +251,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "01837344-792e-433a-95a3-8033f8711612"
     },
-    "fileId": "85BFFvF0ZGSYtI8MYJoO/R",
+    "fileId": "87HHhPU+1GK7vzxubonYo0",
     "sync": false
   },
   {
@@ -292,7 +292,7 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_N$totalLength": 40,
+    "_N$totalLength": 60,
     "_N$barSprite": {
       "__id__": 4
     },
@@ -307,14 +307,14 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "01837344-792e-433a-95a3-8033f8711612"
     },
-    "fileId": "66nyLDt7ZM5LldaGRmVBEZ",
+    "fileId": "e1neqigehDRKKassSITZaw",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "expBar",
+    "_name": "attackBar",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -347,8 +347,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 8
+      "width": 60,
+      "height": 5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -358,7 +358,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -36,
+      "y": -30,
       "z": 0
     },
     "_scale": {
@@ -409,7 +409,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
+      "width": 60,
       "height": 5
     },
     "_anchorPoint": {
@@ -419,7 +419,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -20,
+      "x": -30,
       "y": 0,
       "z": 0
     },
@@ -454,7 +454,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "01301823-a105-4971-b109-29c567a3b256"
+      "__uuid__": "8f8837a2-e5b0-4fef-957e-da1a75b174b9"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -477,9 +477,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "01837344-792e-433a-95a3-8033f8711612"
     },
-    "fileId": "9cwgvbIbhHfa4DhEx//2JE",
+    "fileId": "d8vQmH0XFC4IcCYISGSmN4",
     "sync": false
   },
   {
@@ -518,12 +518,12 @@
       "__id__": 9
     },
     "_enabled": true,
-    "_N$totalLength": 40,
+    "_N$totalLength": 60,
     "_N$barSprite": {
       "__id__": 11
     },
     "_N$mode": 0,
-    "_N$progress": 0,
+    "_N$progress": 1,
     "_N$reverse": false,
     "_id": ""
   },
@@ -533,14 +533,14 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "01837344-792e-433a-95a3-8033f8711612"
     },
-    "fileId": "4bqX2bhENFh5Wyq/W8mhCA",
+    "fileId": "22bDf9oMdMM72XGpDIk0tR",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "healthBar",
+    "_name": "expBar",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -573,8 +573,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 8
+      "width": 60,
+      "height": 5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -584,7 +584,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -20,
+      "y": -35,
       "z": 0
     },
     "_scale": {
@@ -628,14 +628,14 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 253,
+      "g": 253,
+      "b": 253,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 0,
       "height": 5
     },
     "_anchorPoint": {
@@ -645,7 +645,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -20,
+      "x": -30,
       "y": 0,
       "z": 0
     },
@@ -680,7 +680,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f7a7b3d7-eeff-47e5-9eba-1fa547ff5394"
+      "__uuid__": "01301823-a105-4971-b109-29c567a3b256"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -703,9 +703,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "01837344-792e-433a-95a3-8033f8711612"
     },
-    "fileId": "d8zCzdulNAd7FStDjy0Zyj",
+    "fileId": "070M1ml55NuImUrBv9JrKJ",
     "sync": false
   },
   {
@@ -744,12 +744,12 @@
       "__id__": 16
     },
     "_enabled": true,
-    "_N$totalLength": 40,
+    "_N$totalLength": 60,
     "_N$barSprite": {
       "__id__": 18
     },
     "_N$mode": 0,
-    "_N$progress": 1,
+    "_N$progress": 0,
     "_N$reverse": false,
     "_id": ""
   },
@@ -759,9 +759,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "01837344-792e-433a-95a3-8033f8711612"
     },
-    "fileId": "dajaXvN49C3qTy+FE3vbdY",
+    "fileId": "eeV9DX7H1JPbljdGsOGZYX",
     "sync": false
   },
   {
@@ -792,8 +792,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 20.89,
-      "height": 10
+      "width": 31.51,
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -802,8 +802,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0.7,
-      "y": -11,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_scale": {
@@ -835,10 +835,10 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "LV:1",
-    "_N$string": "LV:1",
-    "_fontSize": 10,
-    "_lineHeight": 10,
+    "_string": "LV. 1",
+    "_N$string": "LV. 1",
+    "_fontSize": 15,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
     "_isSystemFontUsed": true,
@@ -857,9 +857,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "01837344-792e-433a-95a3-8033f8711612"
     },
-    "fileId": "9d2VY+fEhAqJHaJujhb1iL",
+    "fileId": "15LhungGJBhIF0cKC4hBES",
     "sync": false
   },
   {
@@ -876,7 +876,7 @@
       "__uuid__": "84bf1dca-a661-4d3f-976a-9bc017d6d637"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -903,12 +903,12 @@
     "maxDefense": 20,
     "maxSpeed": 0,
     "maxLevel": 3,
-    "maxHealthRestoration": 2,
+    "healthRestoration": 5,
     "attackGetExp": 20,
     "killGetScore": 0,
     "killGetMoney": 0,
     "killGetExp": 0,
-    "cost": 100,
+    "cost": 20,
     "attackTime": 2,
     "currentHealth": 300,
     "currentAttack": 150,
@@ -916,11 +916,11 @@
     "currentSpeed": 0,
     "currentLevel": 1,
     "currentExp": 0,
-    "currentHealthRestoration": 2,
     "currentTimeSinceAttack": 0,
+    "currentTimeOfRestoreHealth": 0,
     "currentStatus": true,
     "type": 0,
-    "attackRange": 50,
+    "attackRange": 40,
     "searchRange": 0,
     "searchBlock": 0,
     "valid": true,
@@ -939,9 +939,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "01837344-792e-433a-95a3-8033f8711612"
     },
-    "fileId": "efNJn1EANN6ZbTbU9WFWvx",
+    "fileId": "68dTcGJj9ElaYi+tD0RD4E",
     "sync": false
   }
 ]

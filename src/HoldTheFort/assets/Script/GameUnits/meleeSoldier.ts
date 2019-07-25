@@ -14,7 +14,7 @@ import { gameConstants, unitConstants } from  '../constants';
 @ccclass
 export class meleeSoldier extends melee {
 
-    public method
+    public method;
     constructor() {
         super();
         // 我军，可以升级，不能移动，有造价

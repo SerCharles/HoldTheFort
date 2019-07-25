@@ -13,7 +13,7 @@ import { playerMortar } from './playerMortar';
 @ccclass
 export class playerShow extends cc.Component {
 
-    public
+    public;
     // 等级显示
     @property(cc.Label)
     levelShow: cc.Label = null;
@@ -30,7 +30,7 @@ export class playerShow extends cc.Component {
         this.getMyMortar();
     }
 
-    public method
+    public method;
     // 设置编号
     setCode() {
         if (this.node.name === 'mortarInfo0') {

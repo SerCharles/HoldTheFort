@@ -12,13 +12,13 @@ import { gameConstants, globalModule } from '../constants';
 @ccclass
 export class standardGameButton extends cc.Component {
 
-    public method
+    public method;
     onLoad() {
         // let button = this.node.getComponent(cc.Button);
         // 绑定点击事件
         this.node.on('click', function(event) {
             globalModule.globalClass.gameType = gameConstants.gameTypeStandard;
-            cc.director.loadScene('loadScene');
+            cc.director.loadScene('mapChooseScene');
         }, this);
     }
 

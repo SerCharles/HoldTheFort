@@ -1,5 +1,6 @@
 startLoadScene:进入游戏前的加载
 openScene:游戏主菜单
+mapChooseScene:地图选择页面
 loadingScene:加载界面
 standardGame:标准模式游戏界面
 artilleryGame：炮兵模式游戏界面

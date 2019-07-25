@@ -13,7 +13,7 @@ import { gameConstants, unitConstants, judgeOutOfRange, globalModule } from  '..
 @ccclass
 export class ammo extends cc.Component {
 
-    public
+    public;
     @property(Number)
     damage: number = 0;
 
@@ -30,9 +30,9 @@ export class ammo extends cc.Component {
     @property(cc.Vec2)
     movingDirection: cc.Vec2 = undefined;
 
-    public method
-    //一系列对外接口
-    //设置移动方向
+    public method;
+    // 一系列对外接口
+    // 设置移动方向
     setMovingDirection(destination: cc.Vec2) {
         let dx = destination.x - this.node.x;
         let dy = destination.y - this.node.y;

@@ -11,12 +11,12 @@ import { gameConstants, globalModule } from '../constants';
 
 @ccclass
 export default class artillaryCareerButton extends cc.Component {
-    public method
+    public method;
     onLoad() {
         // 绑定点击事件
         this.node.on('click', function(event) {
             globalModule.globalClass.gameType = gameConstants.gameTypeArtillary;
-            cc.director.loadScene('loadScene');
+            cc.director.loadScene('mapChooseScene');
         }, this);
     }
 

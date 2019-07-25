@@ -11,14 +11,14 @@ import { globalModule } from '../constants';
 @ccclass
 export class pauseButton extends cc.Component {
 
-    public
+    public;
     @property(cc.SpriteFrame)
     pausePicture: cc.SpriteFrame = null;
 
     @property(cc.SpriteFrame)
     resumePicture: cc.SpriteFrame = null;
 
-    public method
+    public method;
     onLoad() {
         // 绑定点击事件
         this.node.on('click', this.onClick, this);
@@ -46,7 +46,9 @@ export class pauseButton extends cc.Component {
             button.pressedSprite = this.pausePicture;
             button.hoverSprite = this.pausePicture;
 
-            cc.audioEngine.playMusic(game.backgroundMusic, true);
+            if (globalModule.globalClass.whetherHasSound === true) {
+                cc.audioEngine.playMusic(game.backgroundMusic, true);
+            }
         }
     }
 

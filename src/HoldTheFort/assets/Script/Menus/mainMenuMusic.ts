@@ -10,11 +10,11 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export class mainMenuMusic extends cc.Component {
 
-    public
+    public;
     @property(cc.AudioClip)
     backgroundMusic: cc.AudioClip = null;
 
-    public method
+    public method;
     onLoad() {
         cc.audioEngine.playMusic(this.backgroundMusic, true);
     }

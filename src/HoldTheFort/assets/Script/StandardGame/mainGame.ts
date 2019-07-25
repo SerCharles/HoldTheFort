@@ -36,7 +36,7 @@ import {
 @ccclass
 export class mainGame extends cc.Component {
 
-    public
+    public;
     // 加载地图
     // ground：草地，show：城堡
     @property(cc.TiledMap)
@@ -60,6 +60,9 @@ export class mainGame extends cc.Component {
     mortarSoldier: cc.Prefab = null;
 
     @property(cc.Prefab)
+    selfBomberSoldier: cc.Prefab = null;
+
+    @property(cc.Prefab)
     meleeEnemy: cc.Prefab = null;
 
     @property(cc.Prefab)
@@ -69,7 +72,7 @@ export class mainGame extends cc.Component {
     mortarEnemy: cc.Prefab = null;
 
     @property(cc.Prefab)
-    selfBomber: cc.Prefab = null;
+    selfBomberEnemy: cc.Prefab = null;
 
     @property(cc.Prefab)
     siegeTower: cc.Prefab = null;
@@ -82,6 +85,9 @@ export class mainGame extends cc.Component {
 
     @property(cc.Prefab)
     gold: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    maxGold: cc.Prefab = null;
 
     // 动画的prefab
     @property(cc.Prefab)
@@ -105,6 +111,13 @@ export class mainGame extends cc.Component {
 
     @property([shell])
     shellList: shell[] = [];
+
+    // 加载城堡地形数组，用于随机刷兵
+    @property(Number)
+    castleNumber: number = 0;
+
+    @property([cc.Vec2])
+    castleList: cc.Vec2[] = [];
 
 
     // 音效
@@ -130,13 +143,16 @@ export class mainGame extends cc.Component {
     @property(cc.AudioClip)
     backgroundMusic: cc.AudioClip = null;
 
-    // 控制当前金币和分数的显示
-    // 显示金币和分数
+    // 控制当前金币和分数,游戏轮数的显示
+    // 显示金币和分数，轮数
     @property(cc.Label)
     scoreDisplay: cc.Label = null;
 
     @property(cc.Label)
     goldDisplay: cc.Label = null;
+
+    @property(cc.Label)
+    roundDisplay: cc.Label = null;
 
     // 分数和金币
     @property(Number)
@@ -157,6 +173,15 @@ export class mainGame extends cc.Component {
 
     @property(cc.Prefab)
     invalidNode: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    attackRangeShowMelee: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    attackRangeShowShell: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    attackRangeShowRanged: cc.Prefab = null;
 
     // 控制随机刷出敌人
     // 距离上次刷出敌人的等待时间，以下分别为普通敌人（近战与远程），特殊敌人（自爆与炮兵），攻城塔（带好几个近战远程敌人）
@@ -179,6 +204,15 @@ export class mainGame extends cc.Component {
     @property(Number)
     currentTimeForNextEnemyTower: number = 0;
 
+    // 控制随机刷出友军
+    // 距离上次刷出友军的等待时间
+    @property(Number)
+    currentTimeSinceLastSoldier: number = 0;
+
+    // 刷出下个友军的总共等待时间
+    @property(Number)
+    currentTimeForNextSoldier: number = 0;
+
     // 游戏结束的判定变量
     // 广场位置，敌人会走直线往广场里冲，敌人占领广场一段时间就失败
     @property(cc.Vec2)
@@ -186,17 +220,42 @@ export class mainGame extends cc.Component {
 
     // 敌人占领广场的最大时间，超过就输了
     @property(Number)
-    maxEnemyHoldSquareTime = gameConstants.enemyHoldSquareMaxTime;
+    maxEnemyHoldSquareTime: number = gameConstants.enemyHoldSquareMaxTime;
 
     // 失败的倒计时
     @property(Number)
-    countDownBeforeEnd = 0;
+    countDownBeforeEnd: number = 0;
 
     // 显示失败倒计时的文字
     @property(cc.Label)
-    countDownShowText = null;
+    countDownShowText: cc.Label = null;
 
-    public method
+    // 用时代这个东西来控制刷兵
+    // 当前时代：0：战争，敌人正常刷兵。1：白热,敌人不刷兵。2：和平，倒计时
+    @property(Number)
+    currentEra: number = 0;
+
+    // 和平到战争的倒计时
+    @property(Number)
+    countDownBeforeWar: number = 0;
+
+    // 显示和平倒计时
+    @property(cc.Label)
+    countDownBeforeWarShowText: cc.Label = null;
+
+    // 和平最大时间
+    @property(Number)
+    peaceMaxTime: number = gameConstants.peaceMaxTime;
+
+    // 当前的难度（需要几个防御塔才能结束）
+    @property(Number)
+    gameDifficulty: number = 1;
+
+    // 当前以及打完的防御塔个数
+    @property(Number)
+    currentAlreadyTower: number = 0;
+
+    public method;
     // 初始化函数集，以下的函数用于初始化，分别初始化数组和地形，初始单位，监听事件等
     onLoad() {
         // 开始bgm
@@ -205,13 +264,18 @@ export class mainGame extends cc.Component {
         // 初始化游戏数组，终止位置，初始金币，失败倒计时等常量
         this.onLoadGameInfo();
 
+        // 初始化地图和地形
+        this.onLoadMap();
+
         // 初始化开始就有的单位
         this.onLoadInitialUnits();
 
-        // 初始化敌人刷新事件
+        // 初始化敌人，我军刷新事件
         this.randomizeNextEnemyTimeCommon();
         this.randomizeNextEnemyTimeSpecial();
         this.randomizeNextEnemyTimeTower();
+        this.randomizeNextSoldierTime();
+
 
 
         // 监听得分事件
@@ -231,14 +295,48 @@ export class mainGame extends cc.Component {
         globalModule.globalClass.whetherPlayGame = true;
         globalModule.globalClass.whetherHasSound = true;
 
+        this.castleNumber = 0;
         this.terrainList = [];
         this.soldierList = [];
         this.enemyList = [];
         this.ammoList = [];
+        this.castleList = [];
         this.finalPlace = cc.v2(0, 0);
         this.goldNumber = gameConstants.startGold;
         this.countDownBeforeEnd = this.maxEnemyHoldSquareTime;
         this.countDownShowText.string = '';
+    }
+
+    // 加载地形
+    onLoadMap() {
+        let mapCastle = this.node.getChildByName('mapCastle');
+        let mapBarbican = this.node.getChildByName('mapBarbican');
+        let mapBastion = this.node.getChildByName('mapBastion');
+
+        if (globalModule.globalClass.mapType === gameConstants.mapCastle) {
+            this.map = mapCastle.getComponent(cc.TiledMap);
+            this.groundLayer = mapCastle.getChildByName('ground').getComponent(cc.TiledLayer);
+            this.showLayer = mapCastle.getChildByName('show').getComponent(cc.TiledLayer);
+            mapBarbican.destroy();
+            mapBastion.destroy();
+        }
+
+        else if (globalModule.globalClass.mapType === gameConstants.mapBarbican) {
+            this.map = mapBarbican.getComponent(cc.TiledMap);
+            this.groundLayer = mapBarbican.getChildByName('ground').getComponent(cc.TiledLayer);
+            this.showLayer = mapBarbican.getChildByName('show').getComponent(cc.TiledLayer);
+            mapCastle.destroy();
+            mapBastion.destroy();
+        }
+
+        else if (globalModule.globalClass.mapType === gameConstants.mapBastion) {
+            this.map = mapBastion.getComponent(cc.TiledMap);
+            this.groundLayer = mapBastion.getChildByName('ground').getComponent(cc.TiledLayer);
+            this.showLayer = mapBastion.getChildByName('show').getComponent(cc.TiledLayer);
+            mapCastle.destroy();
+            mapBarbican.destroy();
+        }
+
 
         // 初始化地形
         for (let i = 0; i < gameConstants.gridNumX; i++) {
@@ -247,10 +345,14 @@ export class mainGame extends cc.Component {
                 let terrain = gameConstants.terrainPlain;
                 if (this.getTileType(this.showLayer, cc.v2(i, j)) === 'castle') {
                     terrain = gameConstants.terrainCastle;
+                    this.castleNumber++;
+                    this.castleList.push(cc.v2(i, j));
                 }
                 this.terrainList[i * gameConstants.gridNumY + j] = terrain;
             }
         }
+
+
     }
 
     // 初始化开始就有的单位
@@ -269,8 +371,10 @@ export class mainGame extends cc.Component {
             mortarSoldierProperty = element.getComponent('mortarSoldier');
             let mortarEnemyProperty = null;
             mortarEnemyProperty = element.getComponent('mortarEnemy');
-            let selfBomberProperty = null;
-            selfBomberProperty = element.getComponent('selfBomber');
+            let selfBomberSoldierProperty = null;
+            selfBomberSoldierProperty = element.getComponent('selfBomberSoldier');
+            let selfBomberEnemyProperty = null;
+            selfBomberEnemyProperty = element.getComponent('selfBomberEnemy');
             let towerEnemyProperty = null;
             towerEnemyProperty = element.getComponent('siegeTower');
 
@@ -286,9 +390,9 @@ export class mainGame extends cc.Component {
                 this.enemyList.push(mortarEnemyProperty);
                 mortarEnemyProperty.changeDirection(this.finalPlace);
             }
-            else if (selfBomberProperty !== null) {
-                this.enemyList.push(selfBomberProperty);
-                selfBomberProperty.changeDirection(this.finalPlace);
+            else if (selfBomberEnemyProperty !== null) {
+                this.enemyList.push(selfBomberEnemyProperty);
+                selfBomberEnemyProperty.changeDirection(this.finalPlace);
             }
             else if (towerEnemyProperty !== null) {
                 this.enemyList.push(towerEnemyProperty);
@@ -303,6 +407,9 @@ export class mainGame extends cc.Component {
             }
             else if (mortarSoldierProperty !== null) {
                 this.soldierList.push(mortarSoldierProperty);
+            }
+            else if (selfBomberSoldierProperty !== null) {
+                this.soldierList.push(selfBomberSoldierProperty);
             }
 
         }
@@ -319,9 +426,10 @@ export class mainGame extends cc.Component {
             let killedUnitMortar = null;
             killedUnitMortar = event.target.getComponent('mortarEnemy');
             let killedUnitSelfBomber = null;
-            killedUnitSelfBomber = event.target.getComponent('selfBomber');
+            killedUnitSelfBomber = event.target.getComponent('selfBomberEnemy');
             let killedUnitTower = null;
             killedUnitTower = event.target.getComponent('siegeTower');
+
             let current = event.getCurrentTarget();
             let currentGame = current.getComponent('mainGame');
 
@@ -356,7 +464,7 @@ export class mainGame extends cc.Component {
             let killedUnitMortar = null;
             killedUnitMortar = event.target.getComponent('mortarEnemy');
             let killedUnitSelfBomber = null;
-            killedUnitSelfBomber = event.target.getComponent('selfBomber');
+            killedUnitSelfBomber = event.target.getComponent('selfBomberEnemy');
             let killedUnitTower = null;
             killedUnitTower = event.target.getComponent('siegeTower');
             let current = event.getCurrentTarget();
@@ -436,8 +544,12 @@ export class mainGame extends cc.Component {
             }
         }
 
+        // 更新时代
+        this.updateEra(dt);
+
         // 更新刷兵事件
         this.updateEnemyRefresh(dt);
+        this.updateSoldierRefresh(dt);
         this.updateShow();
     }
 
@@ -540,48 +652,40 @@ export class mainGame extends cc.Component {
         let theSpeed = this.updateSingleUnitByTerrain(oneUnit);
 
         // 我方进攻
-        let AttackTarget = null;
+        let attackTarget = null;
+        let nearestTarget = null;
         if (oneUnit.faction === true) {
-            for (let i = 0; i < this.enemyList.length; i++) {
+            // 找到最近敌人，判断是否在攻击范围内。是就攻击
+            nearestTarget = this.findNearestEnemy(oneUnit.node.position);
+            if (nearestTarget !== null) {
+                if (getDistance(nearestTarget.node.position, oneUnit.node.position) <= oneUnit.attackRange) {
+                    attackTarget = nearestTarget;
 
-                if (this.enemyList[i].valid === false || this.enemyList[i].node === null) {
-                    continue;
-                }
-
-                let newPosition = this.enemyList[i].node.position;
-                let distance = getDistance(position, newPosition);
-                if (distance <= oneUnit.attackRange) {
-                    AttackTarget = this.enemyList[i];
-                    break;
+                    // 增加经验
+                    oneUnit.changeExp(oneUnit.attackGetExp);
                 }
             }
         }
 
         // 敌方进攻
         else {
-            for (let i = 0; i < this.soldierList.length; i++) {
-
-                if (this.soldierList[i].valid === false || this.soldierList[i].node === null) {
-                    continue;
-                }
-
-                let newPosition = this.soldierList[i].node.position;
-                let distance = getDistance(position, newPosition);
-                if (distance <= oneUnit.attackRange) {
-                    AttackTarget = this.soldierList[i];
-                    break;
+            // 找到最近敌人，判断是否在攻击范围内。是就攻击
+            nearestTarget = this.findNearestSoldier(oneUnit.node.position);
+            if (nearestTarget !== null) {
+                if (getDistance(nearestTarget.node.position, oneUnit.node.position) <= oneUnit.attackRange) {
+                    attackTarget = nearestTarget;
                 }
             }
         }
 
         // 不能进攻，可以移动
-        if (AttackTarget === null) {
+        if (attackTarget === null) {
             oneUnit.currentSpeed = theSpeed;
         }
         else {
             // 进攻
             if (oneUnit.type === 0 || oneUnit.type === 1 || oneUnit.type === 2) {
-                this.attack(oneUnit, AttackTarget);
+                this.attack(oneUnit, attackTarget);
                 // 设置为装填状态
                 oneUnit.currentSpeed = 0;
                 oneUnit.changeStatus(unitConstants.statusNotAttack);
@@ -609,15 +713,6 @@ export class mainGame extends cc.Component {
 
             // 当前地形为城堡地形
             if (this.terrainList[grid.x * gameConstants.gridNumY + grid.y] === gameConstants.terrainCastle) {
-                // 敌军有减成
-                if (oneUnit.type === 0 && oneUnit.faction === unitConstants.factionEnemy) {
-                    oneUnit.currentAttack = oneUnit.maxAttack * (unitConstants.attackRatioCastleMelee / 100);
-                    oneUnit.currentDefense = oneUnit.maxDefense * (unitConstants.defenseRatioCastleMelee / 100);
-                }
-                else {
-                    oneUnit.currentAttack = oneUnit.maxAttack;
-                    oneUnit.currentDefense = oneUnit.maxDefense;
-                }
                 theSpeed = oneUnit.maxSpeed * (unitConstants.speedRatioCastle / 100);
 
                 // 炮兵，攻城塔不能上墙
@@ -641,21 +736,32 @@ export class mainGame extends cc.Component {
         let theSpeed = this.updateSingleUnitByTerrain(oneUnit);
 
         // 更新自爆兵的移动状态与自爆状态
-        // 寻找离这个士兵距离最近的我军
-        let target = this.findNearestSoldier(position);
+        // 寻找离这个士兵距离最近的对方士兵
+        let target = null;
+
+        if (oneUnit.faction === unitConstants.factionEnemy) {
+            target = this.findNearestSoldier(position);
+        }
+        else {
+            target = this.findNearestEnemy(position);
+        }
 
         // 没有我军士兵：往城堡中心走
         if (target === null) {
-            oneUnit.changeDirection(this.finalPlace);
+            if (oneUnit.faction === unitConstants.factionEnemy) {
+                oneUnit.changeDirection(this.finalPlace);
+            }
         }
         else {
             // 够近了：让这个兵死亡，它自动自爆
             if (getDistance(position, target.node.position) <= oneUnit.attackRange) {
                 oneUnit.beingAttack(gameConstants.maxNumber);
             }
-            // 不够近：接着走
+            // 不够近：接着走/不动
             else {
-                oneUnit.changeDirection(target.node.position);
+                if (oneUnit.faction === unitConstants.factionEnemy) {
+                    oneUnit.changeDirection(target.node.position);
+                }
             }
         }
     }
@@ -699,26 +805,85 @@ export class mainGame extends cc.Component {
 
     // 更新显示内容
     updateShow() {
-        this.scoreDisplay.string = 'score: ' + this.scoreNumber;
-        this.goldDisplay.string = 'gold: ' + this.goldNumber;
+        this.scoreDisplay.string = 'Score: ' + this.scoreNumber;
+        this.goldDisplay.string = 'Gold: ' + this.goldNumber;
+        this.roundDisplay.string = 'Current Round: ' + this.gameDifficulty;
     }
 
-    // 更新敌人的刷新，下面有子函数控制三种敌人的具体刷新
-    updateEnemyRefresh(dt) {
-        this.currentTimeSinceLastEnemyCommon += dt;
-        this.currentTimeSinceLastEnemySpecial += dt;
-        this.currentTimeSinceLastEnemyTower += dt;
+    updateEra(dt) {
 
-        // 时间够了，可以刷新敌人
-        if (this.currentTimeSinceLastEnemyCommon >= this.currentTimeForNextEnemyCommon) {
-            this.enemyRefreshCommon();
+        // 非战争状态：重置和平时间,不显示战争字符
+        if (this.currentEra !== gameConstants.eraPeace) {
+            this.countDownBeforeWar = this.peaceMaxTime;
+            this.countDownBeforeWarShowText.string = '';
         }
-        if (this.currentTimeSinceLastEnemySpecial >= this.currentTimeForNextEnemySpecial) {
-            this.enemyRefreshSpecial();
+
+        // 战争：刷到足够的防御塔就进入白热化战争
+        if (this.currentEra === gameConstants.eraWar) {
+            if (this.currentAlreadyTower >= this.gameDifficulty) {
+                this.currentEra = gameConstants.eraHotWar;
+            }
         }
-        if (this.currentTimeSinceLastEnemyTower >= this.currentTimeForNextEnemyTower) {
-            this.enemyRefreshTower();
+
+        // 白热化战争：杀死全部敌人就可以停止
+        else if (this.currentEra === gameConstants.eraHotWar) {
+            if (this.enemyList === null || this.enemyList.length === 0) {
+                // 战争停止
+                this.currentEra = gameConstants.eraPeace;
+
+                // 赢了，生成大量钱和分数
+                this.gainScore(gameConstants.winStageAddScore);
+
+                if (globalModule.globalClass.gameType === gameConstants.gameTypeStandard) {
+                    this.spawnMaxMoney();
+                }
+            }
         }
+
+        else if (this.currentEra === gameConstants.eraPeace) {
+            this.countDownBeforeWar -= dt;
+            let countDown = this.countDownBeforeWar.toFixed(2);
+            this.countDownBeforeWarShowText.string = 'You have defeated one round of enemy attack,\nanother round of enemy attack will begin in '
+            + countDown + ' seconds';
+
+
+            if (this.countDownBeforeWar <= 0) {
+                this.currentEra = gameConstants.eraWar;
+                this.currentAlreadyTower = 0;
+                this.gameDifficulty++;
+            }
+        }
+    }
+
+
+
+    // 更新敌人的刷新，下面有子函数控制三种敌人的具体刷新
+    // 只有战争状态下刷新敌人，否则不刷新敌人
+    // 刷新完防御塔：进入白热化战争状态，不刷新敌人
+    updateEnemyRefresh(dt) {
+        if (this.currentEra === gameConstants.eraWar) {
+            this.currentTimeSinceLastEnemyCommon += dt;
+            this.currentTimeSinceLastEnemySpecial += dt;
+            this.currentTimeSinceLastEnemyTower += dt;
+
+            // 时间够了，可以刷新敌人
+            if (this.currentTimeSinceLastEnemyCommon >= this.currentTimeForNextEnemyCommon) {
+                this.enemyRefreshCommon();
+            }
+            if (this.currentTimeSinceLastEnemySpecial >= this.currentTimeForNextEnemySpecial) {
+                this.enemyRefreshSpecial();
+            }
+            if (this.currentTimeSinceLastEnemyTower >= this.currentTimeForNextEnemyTower) {
+                this.enemyRefreshTower();
+                this.currentAlreadyTower++;
+            }
+        }
+        else {
+            this.currentTimeSinceLastEnemyCommon = 0;
+            this.currentTimeSinceLastEnemySpecial = 0;
+            this.currentTimeSinceLastEnemyTower = 0;
+        }
+
     }
 
     enemyRefreshCommon() {
@@ -755,7 +920,7 @@ export class mainGame extends cc.Component {
                 this.spawnMortarEnemy(showPlace);
             }
             else {
-                this.spawnSelfBomber(showPlace);
+                this.spawnSelfBomberEnemy(showPlace);
             }
             // 重置时间为0，且重新随机一个下次刷兵时间
             this.currentTimeSinceLastEnemySpecial = 0;
@@ -802,6 +967,57 @@ export class mainGame extends cc.Component {
         }
     }
 
+    // 更新友军的刷新
+    updateSoldierRefresh(dt) {
+        // 标准模式不刷兵
+        if (globalModule.globalClass.gameType === gameConstants.gameTypeStandard) return;
+        this.currentTimeSinceLastSoldier += dt;
+
+        // 时间够了，可以刷新敌人
+        if (this.currentTimeSinceLastSoldier >= this.currentTimeForNextSoldier) {
+
+            this.soldierRefresh();
+        }
+    }
+
+    // 刷新友军
+    soldierRefresh() {
+        // 能放兵的list
+        let validSoldierPlaceList = [];
+        for (let i = 0; i < this.castleNumber; i++) {
+            let gridPlace = this.castleList[i];
+            if (this.judgeWhetherValid(gridPlace) === true) {
+                validSoldierPlaceList.push(gridPlace);
+            }
+        }
+
+        if (validSoldierPlaceList === null || validSoldierPlaceList.length === 0) {
+            // 没地方能放兵，不放了
+            this.currentTimeSinceLastSoldier = this.currentTimeForNextSoldier;
+        }
+        else {
+            // 随机生成刷兵位置
+            let placeRandResult = Math.floor(Math.random() * validSoldierPlaceList.length);
+            let soldierPlace = validSoldierPlaceList[placeRandResult];
+            let soldierRealPlace = gridPlaceToShowPlace(soldierPlace);
+
+            // 随机生成刷兵兵种
+            let randResult = Math.floor(Math.random() * 7);
+            if (randResult >= 0 && randResult <= 2) {
+                this.spawnMeleeSoldier(soldierRealPlace);
+            }
+            else if (randResult >= 3 && randResult <= 5) {
+                this.spawnRangedSoldier(soldierRealPlace);
+            }
+            else {
+                this.spawnMortarSoldier(soldierRealPlace);
+            }
+
+            // 重置时间为0，且重新随机一个下次刷兵时间
+            this.currentTimeSinceLastSoldier = 0;
+            this.randomizeNextSoldierTime();
+        }
+    }
 
     // 在游戏中添加我军，敌人，金币，弹药等的函数类
     // 在对应位置放置我军近战士兵
@@ -837,6 +1053,16 @@ export class mainGame extends cc.Component {
 
     }
 
+    // 在对应位置放置我军地雷
+    spawnSelfBomberSoldier(place) {
+        let newSelfBomber = cc.instantiate(this.selfBomberSoldier);
+        this.node.addChild(newSelfBomber);
+        newSelfBomber.setPosition(place);
+        let newSoldierComponent = newSelfBomber.getComponent('selfBomberSoldier');
+        newSoldierComponent.changeDirection(place);
+        this.soldierList.push(newSoldierComponent);
+    }
+
     // 在对应位置放置敌人近战士兵
     spawnMeleeEnemy(place) {
         let newMeleeEnemy = cc.instantiate(this.meleeEnemy);
@@ -870,11 +1096,11 @@ export class mainGame extends cc.Component {
     }
 
     // 在对应位置放置敌人自爆兵
-    spawnSelfBomber(place) {
-        let newSelfBomber = cc.instantiate(this.selfBomber);
+    spawnSelfBomberEnemy(place) {
+        let newSelfBomber = cc.instantiate(this.selfBomberEnemy);
         this.node.addChild(newSelfBomber);
         newSelfBomber.setPosition(place);
-        let newEnemyComponent = newSelfBomber.getComponent('selfBomber');
+        let newEnemyComponent = newSelfBomber.getComponent('selfBomberEnemy');
         newEnemyComponent.changeDirection(this.finalPlace);
         this.enemyList.push(newEnemyComponent);
     }
@@ -922,14 +1148,55 @@ export class mainGame extends cc.Component {
         this.node.addChild(newMoney);
     }
 
-    // 在touchmove时，显示对应的黄框(valid)
-    spawnValidNode(place) {
+    // 在随机位置，放置随机钱数的钻石
+    spawnMaxMoney() {
+        let newMoney = cc.instantiate(this.maxGold);
+        let money = newMoney.getComponent('gold');
+
+        // 随机生成位置
+
+        let proportionX = -0.25 + 0.5 * Math.random();
+        let proportionY = -0.25 + 0.5 * Math.random();
+
+        let place = cc.v2(gameConstants.screenWidth * proportionX, gameConstants.screenHeight * proportionY);
+
+        // 随机计算生成钱数
+        let moneyNumber = Math.round(gameConstants.winStageMinGold +
+        Math.random() * (gameConstants.winStageMaxGold - gameConstants.winStageMinGold));
+
+        money.setMoneyNumber(moneyNumber);
+        newMoney.setPosition(place);
+        this.node.addChild(newMoney);
+    }
+
+    // 在touchmove时，显示对应的黄框(valid)和攻击范围
+    spawnValidNode(place, type) {
         // 先删除原先的红框黄框
-        for (let i = 0; i < this.node.childrenCount; i++) {
-            if (this.node.children[i].name === 'validObject' || this.node.children[i].name === 'invalidObject') {
-                this.node.children[i].destroy();
-            }
+        this.removeAuxillaryShow();
+
+        // 根据兵种选择攻击范围
+        let newAttackRangeShow = null;
+
+        // 近战
+        if (type === unitConstants.typeMelee) {
+            newAttackRangeShow = cc.instantiate(this.attackRangeShowMelee);
         }
+
+        // 远程
+        else if (type === unitConstants.typeRanged) {
+            newAttackRangeShow = cc.instantiate(this.attackRangeShowRanged);
+        }
+
+        // 放置自爆兵或者炮兵模式的炮
+        else if (type === unitConstants.typeSelfBomb) {
+            newAttackRangeShow = cc.instantiate(this.attackRangeShowShell);
+        }
+
+        if (newAttackRangeShow !== null) {
+            this.node.addChild(newAttackRangeShow);
+            newAttackRangeShow.setPosition(place);
+        }
+
 
         let newValidNode = cc.instantiate(this.validNode);
         this.node.addChild(newValidNode);
@@ -939,16 +1206,13 @@ export class mainGame extends cc.Component {
     // 在touchmove时，显示对应的红框(invalid)
     spawnInvalidNode(place) {
         // 先删除原先的红框黄框
-        for (let i = 0; i < this.node.childrenCount; i++) {
-            if (this.node.children[i].name === 'validObject' || this.node.children[i].name === 'invalidObject') {
-                this.node.children[i].destroy();
-            }
-        }
+        this.removeAuxillaryShow();
 
         let newInvalidNode = cc.instantiate(this.invalidNode);
         this.node.addChild(newInvalidNode);
         newInvalidNode.setPosition(place);
     }
+
 
     // 生成爆炸动画
     spawnExplodeAnimation(place) {
@@ -1027,8 +1291,23 @@ export class mainGame extends cc.Component {
             return;
         }
 
+        // 获取种类
+        let attackType = 0;
+        if (this.chosenType === unitConstants.typeMelee) {
+            attackType = unitConstants.typeMelee;
+        }
+        else if (this.chosenType === unitConstants.typeRanged) {
+            attackType = unitConstants.typeRanged;
+        }
+        else if (this.chosenType === unitConstants.typeMortar) {
+            attackType = unitConstants.typeMortar;
+        }
+        else if (this.chosenType === unitConstants.typeSelfBomb) {
+            attackType = unitConstants.typeSelfBomb;
+        }
+
         if (this.judgeWhetherValid(gridPlace) === true) {
-            this.spawnValidNode(showPlace);
+            this.spawnValidNode(showPlace, attackType);
         }
         else {
             this.spawnInvalidNode(showPlace);
@@ -1055,32 +1334,32 @@ export class mainGame extends cc.Component {
         let showPlace = cc.v2(showPlaceX, showPlaceY);
 
         // 删除全部valid，invalid的格子
-        for (let i = 0; i < this.node.childrenCount; i++) {
-            if (this.node.children[i].name === 'validObject' || this.node.children[i].name === 'invalidObject') {
-                this.node.children[i].destroy();
-            }
-        }
+        this.removeAuxillaryShow();
 
         if (this.chosenType === -1) {
             return;
         }
-        // 选中界外，或者选择的格子无效，就放置失败，播放失败音效
+        // 选中界外，或者选择的格子无效，就放置失败
         if (judgeOutOfRange(showPlace) === true || this.judgeWhetherValid(gridPlace) === false) {
             this.chosenType = -1;
             return;
         }
 
-        if (this.chosenType === 0) {
+        if (this.chosenType === unitConstants.typeMelee) {
             this.spawnMeleeSoldier(showPlace);
             this.goldNumber -= unitConstants.costMelee;
         }
-        else if (this.chosenType === 1) {
+        else if (this.chosenType === unitConstants.typeRanged) {
             this.spawnRangedSoldier(showPlace);
             this.goldNumber -= unitConstants.costRanged;
         }
-        else if (this.chosenType === 2) {
+        else if (this.chosenType === unitConstants.typeMortar) {
             this.spawnMortarSoldier(showPlace);
             this.goldNumber -= unitConstants.costMortar;
+        }
+        else if (this.chosenType === unitConstants.typeSelfBomb) {
+            this.spawnSelfBomberSoldier(showPlace);
+            this.goldNumber -= unitConstants.costSelfBomb;
         }
 
         this.chosenType = -1;
@@ -1226,6 +1505,12 @@ export class mainGame extends cc.Component {
         (gameConstants.maxNextEnemyTimeTower - gameConstants.minNextEnemyTimeTower) * Math.random();
     }
 
+    // 随机生成下一次刷本方兵的时间
+    randomizeNextSoldierTime() {
+        this.currentTimeForNextSoldier = gameConstants.minNextSoldierTime +
+        (gameConstants.maxNextSoldierTime - gameConstants.minNextSoldierTime) * Math.random();
+    }
+
     // 随机生成敌人位置(只有普通兵和特殊兵刷新才需要，攻城塔刷新有其他的函数）。在边缘，返回cc.Vec2类型的位置
     generateRandomEnemyPlace() {
         let gridPlaceX; let
@@ -1236,14 +1521,14 @@ export class mainGame extends cc.Component {
             gridPlaceX = 0;
 
             // 再随机生成格子位置
-            gridPlaceY = Math.floor(Math.random() * (gameConstants.gridNumY - 2)) + 1;
+            gridPlaceY = Math.floor(Math.random() * (gameConstants.gridNumY - 3)) + 1;
         }
         else if (randEdge === 1) {
             // 右边
             gridPlaceX = gameConstants.gridNumX - 1;
 
             // 再随机生成格子位置
-            gridPlaceY = Math.floor(Math.random() * (gameConstants.gridNumY - 2)) + 1;
+            gridPlaceY = Math.floor(Math.random() * (gameConstants.gridNumY - 3)) + 1;
         }
         else if (randEdge === 2) {
             // 下边
@@ -1281,7 +1566,7 @@ export class mainGame extends cc.Component {
         return false;
     }
 
-    // 找到一个离某位置最近的我军士兵，用于更新自爆兵状态.如果没有我军，返回null
+    // 找到一个离某位置最近的我军士兵，如果没有我军，返回null
     findNearestSoldier(position) {
         if (this.soldierList === null || this.soldierList.length === 0) {
             return null;
@@ -1302,5 +1587,39 @@ export class mainGame extends cc.Component {
             }
         }
         return nearestSoldier;
+    }
+
+    // 找到一个离某位置最近的敌军士兵，如果没有我军，返回null
+    findNearestEnemy(position) {
+        if (this.enemyList === null || this.enemyList.length === 0) {
+            return null;
+        }
+
+        let minDistance = gameConstants.maxNumber;
+        let nearestEnemy = null;
+        for (let i = 0; i < this.enemyList.length; i++) {
+
+            if (this.enemyList[i].valid === false || this.enemyList[i].node === null) {
+                continue;
+            }
+
+            let distance = getDistance(position, this.enemyList[i].node.position);
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestEnemy = this.enemyList[i];
+            }
+        }
+        return nearestEnemy;
+    }
+
+    // 删除显示的所有红框，黄框，攻击范围
+    removeAuxillaryShow() {
+        for (let i = 0; i < this.node.childrenCount; i++) {
+            if (this.node.children[i].name === 'validObject' || this.node.children[i].name === 'invalidObject'
+            || this.node.children[i].name === 'attackRangeShowMelee' || this.node.children[i].name === 'attackRangeShowRanged'
+        || this.node.children[i].name === 'attackRangeShowShell') {
+                this.node.children[i].destroy();
+            }
+        }
     }
 }

@@ -16,8 +16,8 @@ import { gameConstants, unitConstants, getDistance, globalModule } from  '../con
 @ccclass
 export class unit extends cc.Component {
 
-    public
-// 定义自身基本属性
+    public;
+    // 定义自身基本属性
     // 最大值，每次update会根据其最大值来更新其当前值
     @property(Number)
     maxHealth: number = 0;
@@ -30,7 +30,7 @@ export class unit extends cc.Component {
     @property(Number)
     maxLevel: number = unitConstants.maxLevel;
     @property(Number)
-    maxHealthRestoration: number = 0;
+    healthRestoration: number = 0;
 
 
     @property(Number)
@@ -60,9 +60,11 @@ export class unit extends cc.Component {
     @property(Number)
     currentExp: number = 0;
     @property(Number)
-    currentHealthRestoration: number = 0;
-    @property(Number)
     currentTimeSinceAttack: number = 0;
+
+    // 更新生命恢复
+    @property(Number)
+    currentTimeOfRestoreHealth: number = 0;
 
     // 状态:true代表可以攻击（速度不为0），false代表正在装填（速度为0）
     @property(Boolean)
@@ -101,11 +103,15 @@ export class unit extends cc.Component {
     @property(cc.Label)
     levelShow: cc.Label = null;
 
-    public method
+    public method;
     // 留给游戏主界面操作的接口，用于更新单位自身的各种状态
     // 被攻击
     beingAttack(damage: number) {
         this.currentHealth -= damage;
+        if (this.currentLevel !== 1) {
+            console.log(damage);
+            console.log(this.currentHealth);
+        }
     }
 
     // 修改自身的攻击力，防御力，速度，方向，经验，状态
@@ -145,7 +151,6 @@ export class unit extends cc.Component {
     resetAttackTime() {
         this.currentTimeSinceAttack = 0;
     }
-
 
 
 
@@ -189,8 +194,14 @@ export class unit extends cc.Component {
 
     // 更新生命
     updateHealth(dt) {
-        this.currentHealth += this.currentHealth * (this.currentHealthRestoration / 100) * dt;
-        if (this.currentHealth > this.maxHealth) this.currentHealth = this.maxHealth;
+        this.currentTimeOfRestoreHealth += dt;
+        if (this.currentTimeOfRestoreHealth >= 1) {
+            this.currentTimeOfRestoreHealth = 0;
+            this.currentHealth += this.healthRestoration;
+            if (this.currentHealth > this.maxHealth) this.currentHealth = this.maxHealth;
+        }
+
+
     }
 
     // 更新经验与等级

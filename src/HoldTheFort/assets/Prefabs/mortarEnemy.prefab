@@ -46,8 +46,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 60,
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -56,8 +56,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -407,
-      "y": -72,
+      "x": -319,
+      "y": -178,
       "z": 0
     },
     "_scale": {
@@ -82,7 +82,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "attackBar",
+    "_name": "healthBar",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -115,8 +115,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 8
+      "width": 60,
+      "height": 5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -126,7 +126,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -28,
+      "y": -35,
       "z": 0
     },
     "_scale": {
@@ -171,13 +171,13 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
-      "b": 255,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 60,
       "height": 5
     },
     "_anchorPoint": {
@@ -187,7 +187,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -20,
+      "x": -30,
       "y": 0,
       "z": 0
     },
@@ -222,7 +222,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "8f8837a2-e5b0-4fef-957e-da1a75b174b9"
+      "__uuid__": "f7a7b3d7-eeff-47e5-9eba-1fa547ff5394"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -245,9 +245,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "43c2efd8-7b2b-44e0-80c3-0b5184294711"
+      "__uuid__": "a982f0d1-009a-449f-8647-4bee070da3e9"
     },
-    "fileId": "715gm/CMxH3pzfw7FZcUln",
+    "fileId": "75AuP3k1JCaZUb6UpYV1xQ",
     "sync": false
   },
   {
@@ -286,7 +286,7 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_N$totalLength": 40,
+    "_N$totalLength": 60,
     "_N$barSprite": {
       "__id__": 4
     },
@@ -301,14 +301,14 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "43c2efd8-7b2b-44e0-80c3-0b5184294711"
+      "__uuid__": "a982f0d1-009a-449f-8647-4bee070da3e9"
     },
-    "fileId": "91c0gx7qlP/Jh9egFgKbXg",
+    "fileId": "daLEkKg0hE0YjoQjYGz81+",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "healthBar",
+    "_name": "attackBar",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -341,8 +341,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 8
+      "width": 60,
+      "height": 5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -352,7 +352,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -20,
+      "y": -30,
       "z": 0
     },
     "_scale": {
@@ -397,13 +397,13 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
+      "g": 0,
       "b": 255,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 60,
       "height": 5
     },
     "_anchorPoint": {
@@ -413,7 +413,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -20,
+      "x": -30,
       "y": 0,
       "z": 0
     },
@@ -448,7 +448,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f7a7b3d7-eeff-47e5-9eba-1fa547ff5394"
+      "__uuid__": "8f8837a2-e5b0-4fef-957e-da1a75b174b9"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -471,9 +471,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "43c2efd8-7b2b-44e0-80c3-0b5184294711"
+      "__uuid__": "a982f0d1-009a-449f-8647-4bee070da3e9"
     },
-    "fileId": "88DQeQuZ1NSInZrDkV1RIF",
+    "fileId": "46HBhdVopK5YtYqE++yDOq",
     "sync": false
   },
   {
@@ -512,7 +512,7 @@
       "__id__": 9
     },
     "_enabled": true,
-    "_N$totalLength": 40,
+    "_N$totalLength": 60,
     "_N$barSprite": {
       "__id__": 11
     },
@@ -527,9 +527,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "43c2efd8-7b2b-44e0-80c3-0b5184294711"
+      "__uuid__": "a982f0d1-009a-449f-8647-4bee070da3e9"
     },
-    "fileId": "cctqmFUwBMa5ugXJ9iAnrw",
+    "fileId": "6fBd/EzfxAMY2smLyeCzQH",
     "sync": false
   },
   {
@@ -546,7 +546,7 @@
       "__uuid__": "26d7aee0-4c92-465f-aa2f-64943223821b"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -569,11 +569,11 @@
     },
     "_enabled": true,
     "maxHealth": 200,
-    "maxAttack": 300,
+    "maxAttack": 210,
     "maxDefense": 10,
     "maxSpeed": 10,
     "maxLevel": 1,
-    "maxHealthRestoration": 2,
+    "healthRestoration": 5,
     "attackGetExp": 0,
     "killGetScore": 20,
     "killGetMoney": 20,
@@ -581,16 +581,16 @@
     "cost": 0,
     "attackTime": 15,
     "currentHealth": 200,
-    "currentAttack": 300,
+    "currentAttack": 90,
     "currentDefense": 10,
-    "currentSpeed": 5,
+    "currentSpeed": 10,
     "currentLevel": 1,
     "currentExp": 0,
-    "currentHealthRestoration": 2,
     "currentTimeSinceAttack": 0,
+    "currentTimeOfRestoreHealth": 0,
     "currentStatus": true,
     "type": 2,
-    "attackRange": 600,
+    "attackRange": 2000,
     "searchRange": 0,
     "searchBlock": 0,
     "valid": true,
@@ -607,9 +607,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "43c2efd8-7b2b-44e0-80c3-0b5184294711"
+      "__uuid__": "a982f0d1-009a-449f-8647-4bee070da3e9"
     },
-    "fileId": "59zNxFuCJAX4y/wEJ6jHMG",
+    "fileId": "15QearFCJN5ZBo9g0kMDCJ",
     "sync": false
   }
 ]

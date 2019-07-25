@@ -14,10 +14,11 @@ import { gameConstants, unitConstants } from  '../constants';
 @ccclass
 export class meleeEnemy extends melee {
 
-    public method
+    public method;
     constructor() {
         super();
         // 敌军，不能升级，可以移动，有击杀奖励
+        this.maxAttack = this.maxAttack * unitConstants.attackRatioGroundMelee;
         this.faction = unitConstants.factionEnemy;
         this.maxLevel = 1;
         this.currentLevel = 1;

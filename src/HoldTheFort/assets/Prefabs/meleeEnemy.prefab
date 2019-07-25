@@ -46,8 +46,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 60,
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -56,8 +56,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -389,
-      "y": -156,
+      "x": -186,
+      "y": -176,
       "z": 0
     },
     "_scale": {
@@ -82,7 +82,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "attackBar",
+    "_name": "healthBar",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -115,8 +115,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 8
+      "width": 60,
+      "height": 5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -126,7 +126,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -28,
+      "y": -35,
       "z": 0
     },
     "_scale": {
@@ -171,13 +171,13 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
-      "b": 255,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 60,
       "height": 5
     },
     "_anchorPoint": {
@@ -187,7 +187,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -20,
+      "x": -30,
       "y": 0,
       "z": 0
     },
@@ -222,7 +222,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "8f8837a2-e5b0-4fef-957e-da1a75b174b9"
+      "__uuid__": "f7a7b3d7-eeff-47e5-9eba-1fa547ff5394"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -245,9 +245,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
+      "__uuid__": "5054306b-864c-4e46-99d9-8d33ee069a82"
     },
-    "fileId": "25Ggl5uDxNXId8K4txUKGg",
+    "fileId": "2csPLDD4VAAa5naRLDOJgY",
     "sync": false
   },
   {
@@ -286,7 +286,7 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_N$totalLength": 40,
+    "_N$totalLength": 60,
     "_N$barSprite": {
       "__id__": 4
     },
@@ -301,14 +301,14 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
+      "__uuid__": "5054306b-864c-4e46-99d9-8d33ee069a82"
     },
-    "fileId": "85ZdLrc4NIxrFttKohcF7m",
+    "fileId": "55QYsZ9TlBTIq7pJXROHG3",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "healthBar",
+    "_name": "attackBar",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -341,8 +341,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 8
+      "width": 60,
+      "height": 5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -352,7 +352,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -20,
+      "y": -30,
       "z": 0
     },
     "_scale": {
@@ -397,13 +397,13 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
+      "g": 0,
       "b": 255,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 60,
       "height": 5
     },
     "_anchorPoint": {
@@ -413,7 +413,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -20,
+      "x": -30,
       "y": 0,
       "z": 0
     },
@@ -448,7 +448,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f7a7b3d7-eeff-47e5-9eba-1fa547ff5394"
+      "__uuid__": "8f8837a2-e5b0-4fef-957e-da1a75b174b9"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -471,9 +471,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
+      "__uuid__": "5054306b-864c-4e46-99d9-8d33ee069a82"
     },
-    "fileId": "8fIkzAQipPHK7xsKw57o/H",
+    "fileId": "51vSdTnMBAmZ0Yqr1u9iYW",
     "sync": false
   },
   {
@@ -512,7 +512,7 @@
       "__id__": 9
     },
     "_enabled": true,
-    "_N$totalLength": 40,
+    "_N$totalLength": 60,
     "_N$barSprite": {
       "__id__": 11
     },
@@ -527,9 +527,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
+      "__uuid__": "5054306b-864c-4e46-99d9-8d33ee069a82"
     },
-    "fileId": "1dRZMR9P9Ho74IOrnDx1f8",
+    "fileId": "9aepSFuo1Be6kBDmU/Nzb7",
     "sync": false
   },
   {
@@ -569,11 +569,11 @@
     },
     "_enabled": true,
     "maxHealth": 300,
-    "maxAttack": 150,
+    "maxAttack": 105,
     "maxDefense": 20,
     "maxSpeed": 20,
     "maxLevel": 1,
-    "maxHealthRestoration": 2,
+    "healthRestoration": 5,
     "attackGetExp": 0,
     "killGetScore": 10,
     "killGetMoney": 10,
@@ -583,14 +583,14 @@
     "currentHealth": 300,
     "currentAttack": 150,
     "currentDefense": 20,
-    "currentSpeed": 10,
+    "currentSpeed": 20,
     "currentLevel": 1,
     "currentExp": 0,
-    "currentHealthRestoration": 2,
     "currentTimeSinceAttack": 0,
+    "currentTimeOfRestoreHealth": 0,
     "currentStatus": true,
     "type": 0,
-    "attackRange": 50,
+    "attackRange": 40,
     "searchRange": 0,
     "searchBlock": 0,
     "valid": true,
@@ -607,9 +607,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "dc6a8e51-87c6-496e-b4ea-286a396064dc"
+      "__uuid__": "5054306b-864c-4e46-99d9-8d33ee069a82"
     },
-    "fileId": "2bG80XprFOcK4g0/imaw9t",
+    "fileId": "62Dll7RslKmr3Xh3O/VX/g",
     "sync": false
   }
 ]

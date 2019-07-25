@@ -15,12 +15,12 @@ import { gameConstants, unitConstants } from  '../constants';
 @ccclass
 export class rangedEnemy extends ranged {
 
-    public method
+    public method;
 
     constructor() {
         super();
         // 敌军，不能升级，可以移动，有击杀奖励
-        this.maxAttack = this.maxAttack * (unitConstants.attackRatioGroundRanged / 100);
+        this.maxAttack = this.maxAttack * unitConstants.attackRatioGroundRanged;
         this.currentAttack = this.maxAttack;
         this.faction = unitConstants.factionEnemy;
         this.maxLevel = 1;

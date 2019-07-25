@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "selfBomber",
+    "_name": "selfBomberEnemy",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -21,7 +21,7 @@
       }
     ],
     "_active": true,
-    "_level": 1,
+    "_level": 2,
     "_components": [
       {
         "__id__": 9
@@ -43,8 +43,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 60,
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -53,8 +53,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -301,
-      "y": -266,
+      "x": -197,
+      "y": -214,
       "z": 0
     },
     "_scale": {
@@ -112,8 +112,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 8
+      "width": 60,
+      "height": 5
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -123,7 +123,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -20,
+      "y": -35,
       "z": 0
     },
     "_scale": {
@@ -168,13 +168,13 @@
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 255,
-      "b": 255,
+      "g": 0,
+      "b": 0,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 60,
       "height": 5
     },
     "_anchorPoint": {
@@ -184,7 +184,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -20,
+      "x": -30,
       "y": 0,
       "z": 0
     },
@@ -242,9 +242,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "3a084ba5-f04a-498f-ac46-6d622cae1dbb"
+      "__id__": 0
     },
-    "fileId": "96aEIYoMxMh4MsaWy/FVQT",
+    "fileId": "34DVVrcRtKTIfzxtcDkVCU",
     "sync": false
   },
   {
@@ -283,7 +283,7 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_N$totalLength": 40,
+    "_N$totalLength": 60,
     "_N$barSprite": {
       "__id__": 4
     },
@@ -298,9 +298,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "3a084ba5-f04a-498f-ac46-6d622cae1dbb"
+      "__id__": 0
     },
-    "fileId": "272+hyUB1CBoNwgxWxo/cZ",
+    "fileId": "19bKP93o5OE4durGJ60G+s",
     "sync": false
   },
   {
@@ -317,7 +317,7 @@
       "__uuid__": "5bd02491-6c45-4be2-9d45-494cb1310a74"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -326,13 +326,13 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": false,
+    "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "89fc5KIuElKN5qXUBgGUh/a",
+    "__type__": "32e80CxyHBJxoXn0HLeWkxc",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -351,17 +351,17 @@
     "killGetExp": 40,
     "cost": 0,
     "attackTime": 0,
-    "currentHealth": 500,
+    "currentHealth": 150,
     "currentAttack": 300,
-    "currentDefense": 50,
-    "currentSpeed": 50,
+    "currentDefense": 35,
+    "currentSpeed": 30,
     "currentLevel": 1,
     "currentExp": 0,
     "currentHealthRestoration": 0,
     "currentTimeSinceAttack": 0,
     "currentStatus": true,
     "type": 3,
-    "attackRange": 40,
+    "attackRange": 60,
     "searchRange": 0,
     "searchBlock": 0,
     "valid": true,
@@ -375,9 +375,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "3a084ba5-f04a-498f-ac46-6d622cae1dbb"
+      "__id__": 0
     },
-    "fileId": "79yhtZOYhLkIuQl9hByW76",
+    "fileId": "f6oHVoiF5NF5aZQ+8H0Us6",
     "sync": false
   }
 ]

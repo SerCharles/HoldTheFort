@@ -10,7 +10,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export class mainMenuButton extends cc.Component {
 
-    public method
+    public method;
     onLoad() {
         // 绑定点击事件
         this.node.on('click', function(event) {

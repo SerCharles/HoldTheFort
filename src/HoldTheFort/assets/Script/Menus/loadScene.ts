@@ -13,14 +13,14 @@ import { gameConstants, globalModule } from '../constants';
 @ccclass
 export class loadScene extends cc.Component {
 
-    public
+    public;
     @property(Number)
     currentLoadTime: number = 0;
 
     @property(Boolean)
     whetherHasLoaded: boolean = false;
 
-    public method
+    public method;
     // 预先加载游戏
     onLoad() {
         this.currentLoadTime = 0;

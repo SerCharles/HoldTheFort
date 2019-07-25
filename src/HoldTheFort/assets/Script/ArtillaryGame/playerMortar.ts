@@ -14,11 +14,11 @@ import { gameConstants, unitConstants } from  '../constants';
 @ccclass
 export class playerMortar extends mortarSoldier {
 
-    public
+    public;
     @property(Number)
     code: number = 0;
 
-    public method
+    public method;
     onLoad() {
         super.onLoad();
         this.setCode();

@@ -15,7 +15,7 @@ import { uploadScore } from '../serverQuery';
 @ccclass
 export class scoreShow extends cc.Component {
 
-    public method
+    public method;
     onLoad() {
         let theLabel = this.node.getChildByName('scoreShow');
         let labelShow = theLabel.getComponent(cc.Label);

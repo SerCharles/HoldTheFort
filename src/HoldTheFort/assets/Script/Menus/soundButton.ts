@@ -11,14 +11,14 @@ import { globalModule } from '../constants';
 @ccclass
 export class soundButton extends cc.Component {
 
-    public
+    public;
     @property(cc.SpriteFrame)
     playPicture: cc.SpriteFrame = null;
 
     @property(cc.SpriteFrame)
     stopPicture: cc.SpriteFrame = null;
 
-    public method
+    public method;
     onLoad() {
         // 绑定点击事件
         this.node.on('click', this.onClick, this);
@@ -48,7 +48,9 @@ export class soundButton extends cc.Component {
             button.pressedSprite = this.playPicture;
             button.hoverSprite = this.playPicture;
 
-            cc.audioEngine.playMusic(game.backgroundMusic, true);
+            if (globalModule.globalClass.whetherPlayGame === true) {
+                cc.audioEngine.playMusic(game.backgroundMusic, true);
+            }
         }
     }
 

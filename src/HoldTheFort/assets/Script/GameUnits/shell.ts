@@ -13,7 +13,7 @@ import { gameConstants, unitConstants, judgeOutOfRange, getDistance, globalModul
 @ccclass
 export class shell extends cc.Component {
 
-    public
+    public;
 
     @property(Number)
     damage: number = 0;
@@ -41,7 +41,7 @@ export class shell extends cc.Component {
     @property(cc.Vec2)
     finalPlace: cc.Vec2 = undefined;
 
-    public method
+    public method;
     setMovingDirection(destination: cc.Vec2) {
         this.finalPlace = destination;
         let dx = destination.x - this.node.x;

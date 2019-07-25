@@ -15,7 +15,7 @@ import { gameConstants, unitConstants } from  '../constants';
 @ccclass
 export class mortarSoldier extends mortar {
 
-    public method
+    public method;
 
     constructor() {
         super();

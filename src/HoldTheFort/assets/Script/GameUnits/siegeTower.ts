@@ -14,7 +14,7 @@ import { gameConstants, unitConstants, globalModule } from  '../constants';
 @ccclass
 export class siegeTower extends unit {
 
-    public method
+    public method;
     constructor() {
         super();
         // 敌军，不能升级，可以移动，有击杀奖励
@@ -22,7 +22,7 @@ export class siegeTower extends unit {
         this.maxHealth = unitConstants.healthTower;
         this.maxAttack = unitConstants.attackTower;
         this.maxDefense = unitConstants.defenseTower;
-        this.maxHealthRestoration = 0;
+        this.healthRestoration = 0;
         this.type = unitConstants.typeSiegeTower;
         this.attackRange = 0;
         this.attackTime = 0;
@@ -38,7 +38,6 @@ export class siegeTower extends unit {
         this.currentAttack = this.maxAttack;
         this.currentHealth = this.maxHealth;
         this.currentDefense = this.maxDefense;
-        this.currentHealthRestoration = this.maxHealthRestoration;
         this.currentLevel = 1;
         this.currentSpeed = this.maxSpeed;
 

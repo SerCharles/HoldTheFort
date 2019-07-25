@@ -14,7 +14,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export class mainGameButton extends cc.Component {
 
-    public
+    public;
     // 按钮代表的士兵种类，初始化的时候用于区分是否有效
     @property(Number)
     type: number = 0;
@@ -22,7 +22,7 @@ export class mainGameButton extends cc.Component {
     @property(Number)
     cost: number = 0;
 
-    public method
+    public method;
     onLoad() {
         // 枚举节点名称，来获取自身代表的兵种
         let theName = this.node.name;
@@ -38,6 +38,11 @@ export class mainGameButton extends cc.Component {
         else if (theName === 'mortarButton') {
             this.type = unitConstants.typeMortar;
             this.cost = unitConstants.costMortar;
+        }
+
+        else if (theName === 'selfBomberButton') {
+            this.type = unitConstants.typeSelfBomb;
+            this.cost = unitConstants.costSelfBomb;
         }
 
         // 修改代表花费cost的label
